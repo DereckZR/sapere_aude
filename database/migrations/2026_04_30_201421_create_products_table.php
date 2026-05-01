@@ -38,6 +38,7 @@ return new class extends Migration
             $table->text('reason_details')->nullable();
             $table->date('movement_date');
             $table->foreignId('product_id')->constrained()->restrictOnDelete();
+            $table->foreignId('transaction_id')->nullable()->constrained('transactions')->nullOnDelete();
             $table->timestamps();
             $table->softDeletes();
         });
