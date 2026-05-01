@@ -22,7 +22,7 @@ return new class extends Migration
             $table->id();
             $table->string('username')->unique();
             $table->string('password');
-            $table->foreignId('member_id')->constrained()->restrictOnDelete();
+            $table->foreignId('member_id')->unique()->constrained()->restrictOnDelete();
             $table->foreignId('role_id')->constrained()->restrictOnDelete();
             $table->rememberToken();
             $table->timestamps();
