@@ -16,4 +16,11 @@ return [
     'important' => 'Importante',
     'warning' => 'Advertencia',
     'information' => 'Información',
+
+    // Custom menu items
+    'members' => 'Miembros',
+    'transactions' => 'Transacciones',
+    'money_movements' => 'Movimientos de Dinero',
+    'income' => 'Ingresos',
+    'expenses' => 'Egresos',
 ];
