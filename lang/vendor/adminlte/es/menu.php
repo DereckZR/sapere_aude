@@ -18,6 +18,7 @@ return [
     'information' => 'Información',
 
     // Custom menu items
+    'cycles' => 'Ciclos',
     'members' => 'Miembros',
     'transactions' => 'Transacciones',
     'money_movements' => 'Movimientos de Dinero',
