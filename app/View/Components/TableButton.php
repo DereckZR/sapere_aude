@@ -12,17 +12,20 @@ class TableButton extends Component
     public string $label;
     public TableButtonAction $action;
     public int $id;
+    public string $url;
     public string $type;
 
     public function __construct(
         string $label,
         TableButtonAction $action,
         int $id,
+        string $url,
         string $type = 'primary',
     ) {
         $this->label = $label;
         $this->action = $action;
         $this->id = $id;
+        $this->url = $url;
         $this->type = $type;
     }
 
