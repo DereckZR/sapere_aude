@@ -20,6 +20,7 @@
         "datatables.net": "^2.3.8",
         "datatables.net-bs4": "^2.3.8",
         "jquery": "^3.7.1",
-        "popper.js": "^1.16.1"
+        "popper.js": "^1.16.1",
+        "toastr": "^2.1.4"
     }
 }
