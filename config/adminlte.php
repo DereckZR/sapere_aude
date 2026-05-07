@@ -309,68 +309,45 @@ return [
             'type' => 'fullscreen-widget',
             'topnav_right' => true,
         ],
-
         // Sidebar items:
         [
             'type' => 'sidebar-menu-search',
             'text' => 'search',
         ],
-        [
-            'text' => 'cycles',
-            'url' => 'cycles',
-            'icon' => 'fas fa-fw fa-sync',
-        ],
-        ['header' => 'account_settings'],
-        // [
-        //     'text' => 'profile',
-        //     'url' => 'admin/settings',
-        //     'icon' => 'fas fa-fw fa-user',
-        // ],
+        ['header' => 'acceso rapido'],
         [
             'text' => 'members',
             'url' => 'members',
-            'icon' => 'fas fa-fw fa-users',
+            'icon' => 'fas fa-fw fa-graduation-cap',
         ],
         [
-            'text' => 'money_movements',
+            'text' => 'transactions',
             'url' => 'transactions',
-            'icon' => 'fas fa-coins',
-            // 'submenu' => [
-            //     [
-            //         'text' => 'incomes',
-
-            //         'url' => '#',
-            //     ],
-
-            //     [
-            //         'text' => 'expenses',
-            //         'url' => '#',
-            //     ],
-            // ],
+            'icon' => 'fas fa-fw fa-exchange-alt',
+            'submenu' => [
+                [
+                    'text' => 'contributions',
+                    'url' => 'contributions',
+                    'icon' => 'fas fa-fw fa-donate',
+                ],
+                [
+                    'text' => 'sells',
+                    'url' => 'sells',
+                    'icon' => 'fas fa-fw fa-receipt',
+                ],
+            ],
         ],
 
-        // [
-        //     'text' => 'blog',
-        //     'url' => 'admin/blog',
-        //     'can' => 'manage-blog',
-        // ],
-
-        // ['header' => 'labels'],
-        // [
-        //     'text' => 'important',
-        //     'icon_color' => 'red',
-        //     'url' => '#',
-        // ],
-        // [
-        //     'text' => 'warning',
-        //     'icon_color' => 'yellow',
-        //     'url' => '#',
-        // ],
-        // [
-        //     'text' => 'information',
-        //     'icon_color' => 'cyan',
-        //     'url' => '#',
-        // ],
+        [
+            'text' => 'products',
+            'url' => 'products',
+            'icon' => 'fas fa-fw fa-cube',
+        ],
+        [
+            'text' => 'cycles',
+            'url' => 'cycles',
+            'icon' => 'fas fa-fw fa-calendar-check',
+        ],
     ],
 
     /*
