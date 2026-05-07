@@ -83,7 +83,8 @@ class {$name}Controller extends Controller
 
     public function store(Request \$request)
     {
-        \$dto = new Create{$name}DTO(\$request->all());
+        \$data = \$request->all();
+        \$dto = new Create{$name}DTO(\$data);
         return response()->json(\$this->service->create(\$dto));
     }
 
