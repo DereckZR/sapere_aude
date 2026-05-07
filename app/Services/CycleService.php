@@ -4,12 +4,14 @@ namespace App\Services;
 
 use App\DTOs\Cycle\CreateCycleDTO;
 use App\DTOs\Cycle\UpdateCycleDTO;
-use App\Enums\TableButtonAction;
 use App\Repositories\Interfaces\CycleRepositoryInterface;
 
 class CycleService
 {
-    public function __construct(protected CycleRepositoryInterface $repository) {}
+    public function __construct(
+        protected CycleRepositoryInterface $repository,
+        protected TableActionService $tableActionService
+    ) {}
 
     public function getAll()
     {
@@ -24,20 +26,14 @@ class CycleService
     {
         $cycles = $this->repository->getAllTrashed();
         $cycles->each(function ($cycle) {
-            if ($cycle->trashed()) {
-                $cycle->actions = $this->renderTrashedActions($cycle->id);
-            } else {
-                $cycle->actions = $this->renderActions($cycle->id);
-            }
+            $cycle->actions = $this->renderActions($cycle->id, $cycle->trashed());
         });
         return $cycles;
     }
 
     public function findById(int $id)
     {
-        $cycle = $this->repository->findById($id);
-        $cycle->actions = $this->renderActions($cycle->id);
-        return $cycle;
+        return $this->repository->findById($id);
     }
 
     public function create(CreateCycleDTO $dto)
@@ -60,36 +56,25 @@ class CycleService
         $this->repository->restore($id);
     }
 
-    public function renderActions(int $id)
+    public function renderActions(int $id, bool $trashed = false)
     {
-        return [
-            view('components.table-button', [
-                'type' => 'primary',
-                'action' => TableButtonAction::EDIT,
-                'id' => $id,
-                'url' => route('cycles.findById', ['id' => $id]),
-                'label' => 'Editar',
-            ])->render(),
-            view('components.table-button', [
-                'type' => 'danger',
-                'action' => TableButtonAction::DELETE,
-                'id' => $id,
-                'url' => route('cycles.delete', ['id' => $id]),
-                'label' => 'Eliminar',
-            ])->render()
-        ];
-    }
+        $actions = [];
 
-    public function renderTrashedActions(int $id)
-    {
-        return [
-            view('components.table-button', [
-                'type' => 'success',
-                'action' => TableButtonAction::RESTORE,
-                'id' => $id,
-                'url' => route('cycles.restore', ['id' => $id]),
-                'label' => 'Restaurar',
-            ])->render()
-        ];
+        if ($trashed) {
+            $actions[] = $this->tableActionService->restore(
+                $id,
+                route('cycles.restore', ['id' => $id])
+            );
+        } else {
+            $actions[] = $this->tableActionService->edit(
+                $id,
+                route('cycles.findById', ['id' => $id])
+            );
+            $actions[] = $this->tableActionService->delete(
+                $id,
+                route('cycles.delete', ['id' => $id])
+            );
+        }
+        return $actions;
     }
 }
