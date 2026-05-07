@@ -12,3 +12,22 @@
     align-items: center;
     z-index: 1051;
 }
+
+
+.table-deleted {
+    background-color: rgba(255, 0, 0, 0.08) !important;
+}
+
+.table-hover tbody tr.table-deleted:hover {
+    background-color: rgba(255, 0, 0, 0.16) !important;
+}
+
+.dark-mode .table-deleted {
+    background-color: rgba(255, 0, 0, 0.20) !important;
+    color: #fff;
+}
+
+.dark-mode .table-hover tbody tr.table-deleted:hover {
+    background-color: rgba(255, 0, 0, 0.30) !important;
+    color: #fff;
+}

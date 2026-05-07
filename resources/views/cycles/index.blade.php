@@ -15,21 +15,24 @@
         <i class="fas fa-plus"></i> Registrar ciclo
     </button>
 
-    <table id="cyclesTable" class="table table-bordered table-striped" data-url="{{ route('cycles.getAll') }}">
-        <thead>
-            <tr>
-                <th>#</th>
-                <th>Fecha de inicio</th>
-                <th>Fecha de cierre</th>
-                <th>Acciones</th>
-            </tr>
-        </thead>
+    <div class="custom-control custom-switch mb-3">
+        <input type="checkbox" class="custom-control-input" id="showDeleted" data-url="{{ route('cycles.getAllTrashed') }}">
+        <label class="custom-control-label" for="showDeleted">Mostrar registros eliminados</label>
+    </div>
+
+    <table id="cyclesTable" class="table table-bordered table-striped table-hover" data-url="{{ route('cycles.getAll') }}"
+        data-deleted-url="{{ route('cycles.getAllTrashed') }}">
     </table>
 
     @include('cycles.partials.cycleModal')
 
 @stop
 
-@section('js')
-
+@section('css')
+    <style>
+        #cyclesTable tbody tr:hover {
+            background-color: #304e6d;
+            color: #ffffff;
+        }
+    </style>
 @stop

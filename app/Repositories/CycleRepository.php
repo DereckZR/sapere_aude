@@ -10,9 +10,15 @@ use Override;
 
 class CycleRepository implements CycleRepositoryInterface
 {
+
     public function getAll()
     {
         return Cycle::all();
+    }
+
+    public function getAllTrashed()
+    {
+        return Cycle::withTrashed()->get();
     }
 
     public function findById(int $id)
@@ -30,5 +36,17 @@ class CycleRepository implements CycleRepositoryInterface
         $item = Cycle::findOrFail($dto->id);
         $item->update((array) $dto);
         return $item;
+    }
+
+    public function delete(int $id)
+    {
+        $item = Cycle::findOrFail($id);
+        $item->delete();
+    }
+
+    public function restore(int $id)
+    {
+        $item = Cycle::withTrashed()->findOrFail($id);
+        $item->restore();
     }
 }

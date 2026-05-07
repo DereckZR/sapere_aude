@@ -10,6 +10,10 @@ import 'admin-lte/dist/js/adminlte.min.js';
 import 'datatables.net-bs4';
 import 'datatables.net-bs4/css/dataTables.bootstrap4.min.css';
 
+// SweetAlert2
+import Swal from 'sweetalert2';
+window.Swal = Swal;
+
 // Toastr
 import toastr from 'toastr';
 import 'toastr/build/toastr.min.css';
@@ -48,29 +52,39 @@ const form = $('#formModal form');
 $('#btnCreate').on('click', function () {
     form.attr('action', form.data('createurl'));
     $('#formMethod').val('POST');
-
     $('#modalTitle').text('Registrar');
-    $('#submitBtn').text('Guardar');
 
     form.trigger('reset');
-
+    form.find('.is-invalid').removeClass('is-invalid');
+    form.find('.invalid-feedback').text('');
     modal.modal('show');
 });
 
 // EDITAR
 $(document).on('click', '.btn-edit', function () {
-    const cycle = $(this).data('cycle');
-
-    form.attr('action', form.data('updateurl').replace(':id', cycle.id));
+    const id = $(this).data('id');
+    form.attr('action', form.data('updateurl').replace(':id', id));
     $('#formMethod').val('PUT');
-
-    $('#modalTitle').text('Editar ciclo');
-    $('#submitBtn').text('Actualizar');
-
-    $('#start_date').val(cycle.start_date);
-    $('#end_date').val(cycle.end_date);
-
+    $('#modalTitle').text('Editar');
+    form.trigger('reset');
+    form.find('.is-invalid').removeClass('is-invalid');
+    form.find('.invalid-feedback').text('');
     modal.modal('show');
 });
+
+// Eliminar feedback al cambiar inputs
+$('input').each(function () {
+    $(this).on('change', function () {
+        removeInvalidFeedback(this);
+    });
+});
+
+function removeInvalidFeedback(input) {
+    $(input).removeClass('is-invalid');
+    const feedback = $(input).next('.invalid-feedback');
+    if (feedback.length) {
+        feedback.text('');
+    }
+}
 
 

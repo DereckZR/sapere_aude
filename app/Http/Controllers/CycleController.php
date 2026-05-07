@@ -21,6 +21,11 @@ class CycleController extends Controller
         return response()->json($this->service->getAll());
     }
 
+    public function getAllTrashed()
+    {
+        return response()->json($this->service->getAllTrashed());
+    }
+
     public function findById(int $id)
     {
         return response()->json($this->service->findById($id));
@@ -59,8 +64,15 @@ class CycleController extends Controller
         return response()->json($this->service->update($dto));
     }
 
-    public function destroy(int $id)
+    public function delete(int $id)
     {
-        // Implement destroy method if needed
+        $this->service->delete($id);
+        return response()->json(['message' => 'Cycle deleted successfully.']);
+    }
+
+    public function restore(int $id)
+    {
+        $this->service->restore($id);
+        return response()->json(['message' => 'Cycle restored successfully.']);
     }
 }

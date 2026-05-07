@@ -12,10 +12,12 @@ Route::get('/', function () {
 Route::prefix('cycles')->group(function () {
     Route::get('/', [CycleController::class, 'index'])->name('cycles.index');
     Route::get('/getAll', [CycleController::class, 'getAll'])->name('cycles.getAll');
+    Route::get('/getAllTrashed', [CycleController::class, 'getAllTrashed'])->name('cycles.getAllTrashed');
     Route::get('/{id}/findById', [CycleController::class, 'findById'])->name('cycles.findById');
     Route::post('/', [CycleController::class, 'store'])->name('cycles.store');
     Route::put('/{id}', [CycleController::class, 'update'])->name('cycles.update');
-    Route::delete('/{id}', [CycleController::class, 'destroy'])->name('cycles.destroy');
+    Route::delete('/{id}', [CycleController::class, 'delete'])->name('cycles.delete');
+    Route::patch('/{id}', [CycleController::class, 'restore'])->name('cycles.restore');
 });
 
 // Route::prefix('members')->group(function () {
