@@ -27,12 +27,3 @@
     @include('cycles.partials.cycleModal')
 
 @stop
-
-@section('css')
-    <style>
-        #cyclesTable tbody tr:hover {
-            background-color: #304e6d;
-            color: #ffffff;
-        }
-    </style>
-@stop
