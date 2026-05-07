@@ -10,8 +10,10 @@ interface CycleRepositoryInterface
     public function getAll();
     public function getAllTrashed();
     public function findById(int $id);
+    public function findTrashedById(int $id);
     public function create(CreateCycleDTO $dto);
     public function update(UpdateCycleDTO $dto);
     public function delete(int $id);
     public function restore(int $id);
+    public function hasDateOverlap(string $startDate, string $endDate, ?int $excludeId = null): bool;
 }

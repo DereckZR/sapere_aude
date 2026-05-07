@@ -5,6 +5,8 @@ namespace App\Services;
 use App\DTOs\Cycle\CreateCycleDTO;
 use App\DTOs\Cycle\UpdateCycleDTO;
 use App\Repositories\Interfaces\CycleRepositoryInterface;
+use Carbon\Carbon;
+use Illuminate\Validation\ValidationException;
 
 class CycleService
 {
@@ -53,10 +55,30 @@ class CycleService
 
     public function restore(int $id)
     {
+        $ciclo = $this->repository->findTrashedById($id);
+
+        $this->validateCycleDates(
+            $ciclo->start_date,
+            $ciclo->end_date,
+            $id
+        );
+
         $this->repository->restore($id);
     }
 
-    public function renderActions(int $id, bool $trashed = false)
+    public function getAllForSelect()
+    {
+        return $this->repository->getAll()->map(function ($cycle) {
+            $startDateFormatted = Carbon::parse($cycle->start_date)->format('d/m/Y');
+            $endDateFormatted = Carbon::parse($cycle->end_date)->format('d/m/Y');
+            return [
+                'id' => $cycle->id,
+                'text' => $startDateFormatted . ' - ' . $endDateFormatted,
+            ];
+        });
+    }
+
+    protected function renderActions(int $id, bool $trashed = false)
     {
         $actions = [];
 
@@ -76,5 +98,31 @@ class CycleService
             );
         }
         return $actions;
+    }
+
+    public function validateCycleDates(string $startDate, string $endDate, ?int $excludeId = null): void
+    {
+        $start = Carbon::parse($startDate);
+        $end = Carbon::parse($endDate);
+
+        $duration = $start->diffInDays($end);
+
+        if ($duration < 7) {
+            throw ValidationException::withMessages([
+                'end_date' => 'El ciclo debe tener una duración mínima de 7 días.'
+            ]);
+        }
+
+        $hasOverlap = $this->repository->hasDateOverlap(
+            $startDate,
+            $endDate,
+            $excludeId
+        );
+
+        if ($hasOverlap) {
+            throw ValidationException::withMessages([
+                'start_date' => 'Ya existe un ciclo en ese rango de fechas.'
+            ]);
+        }
     }
 }

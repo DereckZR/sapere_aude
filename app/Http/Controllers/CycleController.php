@@ -43,6 +43,12 @@ class CycleController extends Controller
             'end_date.date' => 'La fecha de cierre debe ser una fecha válida.',
             'end_date.after' => 'La fecha de cierre debe ser posterior a la fecha de inicio.',
         ]);
+
+        $this->service->validateCycleDates(
+            $data['start_date'],
+            $data['end_date']
+        );
+
         $dto = new CreateCycleDTO($data);
         return response()->json($this->service->create($dto));
     }
@@ -59,6 +65,13 @@ class CycleController extends Controller
             'end_date.date' => 'La fecha de cierre debe ser una fecha válida.',
             'end_date.after' => 'La fecha de cierre debe ser posterior a la fecha de inicio.',
         ]);
+
+        $this->service->validateCycleDates(
+            $data['start_date'],
+            $data['end_date'],
+            $id
+        );
+
         $data['id'] = $id;
         $dto = new UpdateCycleDTO($data);
         return response()->json($this->service->update($dto));
