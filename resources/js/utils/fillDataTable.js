@@ -1,8 +1,9 @@
-import { apiFetch } from '../../services/api.js';
+import { apiFetch } from '../services/api.js';
 
-export async function fillDataTable(dataTable) {
+export async function fillDataTable(dataTable, tableSelector = '#mainTable') {
+
     try {
-        const table = $('#cyclesTable');
+        const table = $(tableSelector);
 
         dataTable.processing(true);
 

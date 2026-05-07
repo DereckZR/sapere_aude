@@ -20,7 +20,7 @@
         <label class="custom-control-label" for="showDeleted">Mostrar registros eliminados</label>
     </div>
 
-    <table id="cyclesTable" class="table table-bordered table-striped table-hover" data-url="{{ route('cycles.getAll') }}"
+    <table id="mainTable" class="table table-bordered table-striped table-hover" data-url="{{ route('cycles.getAll') }}"
         data-deleted-url="{{ route('cycles.getAllTrashed') }}">
     </table>
 

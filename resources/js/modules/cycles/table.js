@@ -1,8 +1,7 @@
 import { formatDate } from '../../utils/formatDate.js';
 import { DATATABLE_ES } from '../../utils/DATATABLE_ES.js';
 export function initCyclesTable() {
-
-    return $('#cyclesTable').DataTable({
+    return $('#mainTable').DataTable({
         processing: true,
         data: [],
         columns: [

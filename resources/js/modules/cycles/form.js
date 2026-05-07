@@ -1,7 +1,7 @@
 import { apiFetch } from '../../services/api.js';
 import { handleValidationErrors } from '../../utils/handleValidationErrors.js';
 
-export function initCycleForm({
+export function initForm({
     form,
     modal,
     reloadTable

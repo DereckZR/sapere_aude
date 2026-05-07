@@ -1,6 +1,6 @@
 import { initCyclesTable } from './table.js';
-import { initCycleForm } from './form.js';
-import { fillDataTable } from './fillDataTable.js';
+import { initForm } from './form.js';
+import { fillDataTable } from '../../utils/fillDataTable.js';
 import { initToggleDeleted } from '../../utils/toggleDeleted.js';
 import { initEditCycle } from './edit.js';
 import { initDeleteCycle } from './delete.js';
@@ -12,7 +12,7 @@ $(async function () {
     fillDataTable(dataTable);
     initToggleDeleted(() => fillDataTable(dataTable));
 
-    initCycleForm({
+    initForm({
         form: $('#formModal form'),
         modal: $('#formModal'),
         reloadTable: () => fillDataTable(dataTable)
