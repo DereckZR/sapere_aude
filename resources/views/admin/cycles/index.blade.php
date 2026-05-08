@@ -24,6 +24,5 @@
         data-deleted-url="{{ route('cycles.getAllTrashed') }}">
     </table>
 
-    @include('cycles.partials.cycleModal')
-
+    @include('admin.cycles.partials.cycleModal')
 @stop
