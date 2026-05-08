@@ -12,7 +12,8 @@ class CycleService
 {
     public function __construct(
         protected CycleRepositoryInterface $repository,
-        protected TableActionService $tableActionService
+        protected TableActionService $tableActionService,
+        protected OrdinalNamesService $ordinalNamesService
     ) {}
 
     public function getAll()
@@ -68,12 +69,13 @@ class CycleService
 
     public function getAllForSelect()
     {
-        return $this->repository->getAll()->map(function ($cycle) {
+        return $this->repository->getAll()->map(function ($cycle, $index) {
             $startDateFormatted = Carbon::parse($cycle->start_date)->format('d/m/Y');
             $endDateFormatted = Carbon::parse($cycle->end_date)->format('d/m/Y');
+            $text = $this->ordinalNamesService->getOrdinalName($index + 1) . ' ciclo: ' . $startDateFormatted . ' - ' . $endDateFormatted;
             return [
                 'id' => $cycle->id,
-                'text' => $startDateFormatted . ' - ' . $endDateFormatted,
+                'text' => $text,
             ];
         });
     }

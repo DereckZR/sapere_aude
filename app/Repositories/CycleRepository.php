@@ -57,7 +57,7 @@ class CycleRepository implements CycleRepositoryInterface
 
     public function hasDateOverlap(string $startDate, string $endDate, ?int $excludeId = null): bool
     {
-        return Cycle::where(function ($query) use ($startDate, $endDate, $excludeId) {
+        return Cycle::query()->where(function ($query) use ($startDate, $endDate, $excludeId) {
             $query
                 ->whereBetween('start_date', [$startDate, $endDate])
                 ->orWhereBetween('end_date', [$startDate, $endDate])

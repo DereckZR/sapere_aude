@@ -13,7 +13,7 @@ class CycleController extends Controller
 
     public function index()
     {
-        return view('cycles.index');
+        return view('admin.cycles.index');
     }
 
     public function getAll()
@@ -24,6 +24,11 @@ class CycleController extends Controller
     public function getAllTrashed()
     {
         return response()->json($this->service->getAllTrashed());
+    }
+
+    public function getAllForSelect()
+    {
+        return response()->json($this->service->getAllForSelect());
     }
 
     public function findById(int $id)
