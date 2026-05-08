@@ -6,6 +6,12 @@ window.$ = window.jQuery = $;
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import 'admin-lte/dist/js/adminlte.min.js';
 
+/*
+|--------------------------------------------------------------------------
+| Librerías y plugins
+|--------------------------------------------------------------------------
+*/
+
 // DataTables
 import 'datatables.net-bs4';
 import 'datatables.net-bs4/css/dataTables.bootstrap4.min.css';
@@ -27,6 +33,18 @@ toastr.options = {
 
 window.toastr = toastr;
 
+import TomSelect from 'tom-select';
+import 'tom-select/dist/css/tom-select.bootstrap4.css';
+
+window.TomSelect = TomSelect;
+
+/*
+|--------------------------------------------------------------------------
+| Utils
+|--------------------------------------------------------------------------
+*/
+import { initRemoveInvalidFeedback } from './utils/removeInvalidFeedback.js';
+
 /*
 |--------------------------------------------------------------------------
 | Modulos
@@ -37,6 +55,10 @@ const module = document.body.dataset.module;
 
 if (module === 'cycles') {
     import('./modules/cycles');
+}
+
+if (module === 'members') {
+    import('./modules/members');
 }
 
 /*
@@ -72,19 +94,6 @@ $(document).on('click', '.btn-edit', function () {
     modal.modal('show');
 });
 
-// Eliminar feedback al cambiar inputs
-$('input').each(function () {
-    $(this).on('change', function () {
-        removeInvalidFeedback(this);
-    });
-});
-
-function removeInvalidFeedback(input) {
-    $(input).removeClass('is-invalid');
-    const feedback = $(input).next('.invalid-feedback');
-    if (feedback.length) {
-        feedback.text('');
-    }
-}
+initRemoveInvalidFeedback();
 
 

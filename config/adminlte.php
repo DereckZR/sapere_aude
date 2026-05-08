@@ -314,7 +314,7 @@ return [
             'type' => 'sidebar-menu-search',
             'text' => 'search',
         ],
-        ['header' => 'acceso rapido'],
+        ['header' => 'Administración'],
         [
             'text' => 'members',
             'url' => 'members',

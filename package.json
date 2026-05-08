@@ -22,6 +22,7 @@
         "jquery": "^3.7.1",
         "popper.js": "^1.16.1",
         "sweetalert2": "^11.26.24",
-        "toastr": "^2.1.4"
+        "toastr": "^2.1.4",
+        "tom-select": "^2.6.0"
     }
 }

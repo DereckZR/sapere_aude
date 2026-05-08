@@ -1,5 +1,55 @@
 @import "admin-lte/dist/css/adminlte.min.css";
 
+/* TomSelect dentro de modales Bootstrap (modal z-index: 1050) */
+.ts-dropdown {
+    z-index: 1055 !important;
+}
+
+/* TomSelect - Dark Mode */
+.dark-mode .ts-wrapper .ts-control {
+    background-color: #343a40 !important;
+    border-color: #6c757d !important;
+    color: #c2c7d0 !important;
+}
+
+.dark-mode .ts-wrapper .ts-control input {
+    color: #c2c7d0 !important;
+}
+
+.dark-mode .ts-wrapper .ts-control input::placeholder {
+    color: #a5aeb7;
+}
+
+.dark-mode .ts-wrapper.focus .ts-control {
+    border-color: #80bdff !important;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+.dark-mode .ts-dropdown {
+    background-color: #343a40;
+    border-color: #6c757d !important;
+    color: #c2c7d0;
+}
+
+.dark-mode .ts-dropdown .ts-dropdown-content .option {
+    color: #c2c7d0;
+}
+
+.dark-mode .ts-dropdown .ts-dropdown-content .option:hover,
+.dark-mode .ts-dropdown .ts-dropdown-content .option.active {
+    background-color: #304e6d;
+    color: #ffffff;
+}
+
+.dark-mode .ts-dropdown .ts-dropdown-content .option.selected {
+    background-color: #1f3a52;
+    color: #ffffff;
+}
+
+.dark-mode .ts-wrapper .ts-control .item {
+    color: #ffffff;
+}
+
 .modalLoader {
     position: absolute;
     top: 0;
@@ -12,7 +62,6 @@
     align-items: center;
     z-index: 1051;
 }
-
 
 .table-deleted {
     background-color: rgba(255, 0, 0, 0.08) !important;
