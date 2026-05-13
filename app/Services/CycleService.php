@@ -69,7 +69,13 @@ class CycleService
 
     public function getAllForSelect()
     {
-        return $this->repository->getAll()->map(function ($cycle, $index) {
+        $cycles = $this->repository->getAll();
+        if ($cycles->isEmpty()) {
+            throw ValidationException::withMessages([
+                'cycles' => 'No hay ciclos disponibles. Por favor, cree un ciclo antes de agregar miembros.'
+            ]);
+        }
+        return $cycles->map(function ($cycle, $index) {
             $startDateFormatted = Carbon::parse($cycle->start_date)->format('d/m/Y');
             $endDateFormatted = Carbon::parse($cycle->end_date)->format('d/m/Y');
             $text = $this->ordinalNamesService->getOrdinalName($index + 1) . ' ciclo: ' . $startDateFormatted . ' - ' . $endDateFormatted;

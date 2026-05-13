@@ -2,10 +2,18 @@
     <div class="modal-dialog">
         <div class="modal-content position-relative">
             {{-- Loader --}}
-            <div id="modalLoader" class="d-none modalLoader">
+            <div id="modalLoader" class="d-none modalOverlay modalLoader">
                 <div class="text-center">
                     <div class="spinner-border text-primary"></div>
                     <div class="mt-2">Procesando...</div>
+                </div>
+            </div>
+
+            {{-- Error Message --}}
+            <div id="modalError" class="d-none modalOverlay modalError">
+                <div class="text-center">
+                    <i class="fas fa-times-circle text-danger fa-2x"></i>
+                    <div class="mt-2">Ocurrió un error. Por favor, intente nuevamente.</div>
                 </div>
             </div>
 
