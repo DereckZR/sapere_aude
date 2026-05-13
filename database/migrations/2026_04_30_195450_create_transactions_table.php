@@ -29,6 +29,7 @@ return new class extends Migration
             $table->boolean('is_cash')->default(true);
             $table->foreignId('transaction_category_id')->constrained()->restrictOnDelete();
             $table->foreignId('responsible_member_id')->constrained('members')->restrictOnDelete();
+            $table->foreignId('cycle_id')->constrained('cycles')->restrictOnDelete();
             $table->timestamps();
             $table->softDeletes();
         });

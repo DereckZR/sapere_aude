@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\CycleState;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -14,11 +15,13 @@ class Cycle extends Model
     protected $fillable = [
         'start_date',
         'end_date',
+        'state',
     ];
 
     protected $casts = [
         'start_date' => 'date',
         'end_date' => 'date',
+        'state' => CycleState::class,
     ];
 
     /*
@@ -35,5 +38,10 @@ class Cycle extends Model
     public function branches()
     {
         return $this->hasMany(Branch::class);
+    }
+
+    public function transactions()
+    {
+        return $this->hasMany(Transaction::class);
     }
 }
