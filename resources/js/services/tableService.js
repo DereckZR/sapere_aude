@@ -1,6 +1,6 @@
-import { apiFetch } from '../services/api.js';
+import { apiFetch } from './api.js';
 
-export async function fillDataTable(dataTable, tableSelector = '#mainTable') {
+export async function fillData(dataTable, tableSelector = '#mainTable') {
 
     try {
         const table = $(tableSelector);
