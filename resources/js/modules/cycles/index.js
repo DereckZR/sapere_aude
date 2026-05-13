@@ -5,6 +5,7 @@ import { initToggleDeleted } from '../../utils/toggleDeleted.js';
 import { initEditCycle } from './edit.js';
 import { initDeleteCycle } from './delete.js';
 import { initRestoreCycle } from './restore.js';
+import { initDeleteAction, initRestoreAction } from '../../services/actionService.js';
 
 $(async function () {
     const dataTable = initCyclesTable();
@@ -19,8 +20,9 @@ $(async function () {
     });
 
     initEditCycle();
-    initDeleteCycle(() => fillData(dataTable));
-    initRestoreCycle(() => fillData(dataTable));
+
+    initDeleteAction(() => fillData(dataTable));
+    initRestoreAction(() => fillData(dataTable));
 });
 
 
