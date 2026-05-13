@@ -3,8 +3,6 @@ import { initForm } from '../../services/formService.js';
 import { fillData } from '../../services/tableService.js';
 import { initToggleDeleted } from '../../utils/toggleDeleted.js';
 import { initEditCycle } from './edit.js';
-import { initDeleteCycle } from './delete.js';
-import { initRestoreCycle } from './restore.js';
 import { initDeleteAction, initRestoreAction } from '../../services/actionService.js';
 
 $(async function () {
