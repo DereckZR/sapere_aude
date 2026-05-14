@@ -12,8 +12,6 @@ $(async function () {
     initToggleDeleted(() => fillData(dataTable));
 
     initForm({
-        form: $('#formModal form'),
-        modal: $('#formModal'),
         reloadTable: () => fillData(dataTable)
     });
 

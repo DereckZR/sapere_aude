@@ -5,18 +5,19 @@ export function initMembersTable() {
     return $('#mainTable').DataTable({
         processing: true,
         data: [],
+        order: [],
         columns: [
             {
                 data: 'id',
                 title: '#'
             },
             {
-                data: 'name',
-                title: 'Nombre',
+                data: 'first_name',
+                title: 'Nombres',
             },
             {
                 data: 'last_name',
-                title: 'Apellido',
+                title: 'Apellidos',
             },
             {
                 data: 'career',

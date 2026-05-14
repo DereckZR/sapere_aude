@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('first_name');
             $table->string('last_name');
             $table->string('career');
-            $table->string('phone_number')->nullable();
+            $table->string('phone_number', 20)->nullable();
             $table->date('birth_date')->nullable();
             $table->foreignId('admission_cycle_id')->constrained('cycles')->restrictOnDelete();
             $table->foreignId('last_active_cycle_id')->nullable()->constrained('cycles')->restrictOnDelete();

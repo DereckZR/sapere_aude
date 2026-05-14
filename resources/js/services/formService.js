@@ -2,8 +2,8 @@ import { apiFetch } from './api.js';
 import { handleValidationErrors } from '../utils/handleValidationErrors.js';
 
 export function initForm({
-    form,
-    modal,
+    modal = $('#formModal'),
+    form = $('#formModal form'),
     reloadTable
 }) {
     const loader = $('#modalLoader');
