@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use App\Services\CycleService;
+use Illuminate\Validation\Validator;
 
 class StoreMemberRequest extends FormRequest
 {
@@ -89,11 +90,7 @@ class StoreMemberRequest extends FormRequest
         ];
     }
 
-    /**
-     * @param mixed $validator
-     * @return void
-     */
-    public function withValidator($validator): void
+    public function withValidator(Validator $validator): void
     {
         $validator->after(function ($validator) {
 

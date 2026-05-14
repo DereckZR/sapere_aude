@@ -1,9 +1,9 @@
 <?php
 
+use Tests\TestCase;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use App\Models\Cycle;
 use App\Models\Member;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Tests\TestCase;
 
 class MemberValidationTest extends TestCase
 {

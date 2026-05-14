@@ -17,7 +17,12 @@ class MemberService
     {
         $members = $this->repository->getAll();
         $members->each(function ($member) {
-            $member->actions = $this->tableActionService->renderActions($member->id, 'members', false, true);
+            $member->actions = $this->tableActionService->renderActions(
+                $member->id,
+                'members',
+                false,
+                true
+            );
         });
         return $members;
     }
@@ -26,7 +31,12 @@ class MemberService
     {
         $members = $this->repository->getAllTrashed();
         $members->each(function ($member) {
-            $member->actions = $this->tableActionService->renderActions($member->id, 'members', $member->trashed());
+            $member->actions = $this->tableActionService->renderActions(
+                $member->id,
+                'members',
+                $member->trashed(),
+                true
+            );
         });
         return $members;
     }
