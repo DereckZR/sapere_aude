@@ -10,7 +10,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Cycle extends Model
 {
     use HasFactory;
-
     use SoftDeletes;
 
     protected $table = 'cycles';

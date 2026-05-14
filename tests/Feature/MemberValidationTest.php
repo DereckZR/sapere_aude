@@ -42,6 +42,7 @@ class MemberValidationTest extends TestCase
         ]);
 
         $memberData = Member::factory()->make([
+            'phone_number' => '1234567890',
             'admission_cycle_id' => $admissionCycle->id,
             'last_active_cycle_id' => $lastActiveCycle->id,
         ])->toArray();
