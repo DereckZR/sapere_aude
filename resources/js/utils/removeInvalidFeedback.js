@@ -1,3 +1,11 @@
+// utils/removeInvalidFeedback.js
+
+/*
+|--------------------------------------------------------------------------
+| removeInvalidFeedback
+| Función para eliminar el feedback de validación de un input específico
+|--------------------------------------------------------------------------
+*/
 function removeInvalidFeedback(input) {
     $(input).removeClass('is-invalid');
     const feedback = $(input).next('.invalid-feedback');
@@ -6,6 +14,12 @@ function removeInvalidFeedback(input) {
     }
 }
 
+/*
+|--------------------------------------------------------------------------
+| initRemoveInvalidFeedback
+| Función para inicializar la eliminación del feedback de validación de los inputs
+|--------------------------------------------------------------------------
+*/
 export function initRemoveInvalidFeedback() {
     // Eliminar feedback al cambiar inputs
     $('input').each(function () {
