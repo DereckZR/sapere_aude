@@ -20,7 +20,7 @@ class CycleService
     {
         $cycles = $this->repository->getAll();
         $cycles->each(function ($cycle) {
-            $cycle->actions = $this->renderActions($cycle->id);
+            $cycle->actions = $this->tableActionService->renderActions($cycle->id, 'cycles');
         });
         return $cycles;
     }
@@ -29,7 +29,7 @@ class CycleService
     {
         $cycles = $this->repository->getAllTrashed();
         $cycles->each(function ($cycle) {
-            $cycle->actions = $this->renderActions($cycle->id, $cycle->trashed());
+            $cycle->actions = $this->tableActionService->renderActions($cycle->id, 'cycles', $cycle->trashed());
         });
         return $cycles;
     }
@@ -70,11 +70,13 @@ class CycleService
     public function getAllForSelect()
     {
         $cycles = $this->repository->getAll();
+
         if ($cycles->isEmpty()) {
             throw ValidationException::withMessages([
                 'cycles' => 'No hay ciclos disponibles. Por favor, cree un ciclo antes de agregar miembros.'
             ]);
         }
+
         return $cycles->map(function ($cycle, $index) {
             $startDateFormatted = Carbon::parse($cycle->start_date)->format('d/m/Y');
             $endDateFormatted = Carbon::parse($cycle->end_date)->format('d/m/Y');
@@ -84,28 +86,6 @@ class CycleService
                 'text' => $text,
             ];
         });
-    }
-
-    protected function renderActions(int $id, bool $trashed = false)
-    {
-        $actions = [];
-
-        if ($trashed) {
-            $actions[] = $this->tableActionService->restore(
-                $id,
-                route('cycles.restore', ['id' => $id])
-            );
-        } else {
-            $actions[] = $this->tableActionService->edit(
-                $id,
-                route('cycles.findById', ['id' => $id])
-            );
-            $actions[] = $this->tableActionService->delete(
-                $id,
-                route('cycles.delete', ['id' => $id])
-            );
-        }
-        return $actions;
     }
 
     public function validateCycleDates(string $startDate, string $endDate, ?int $excludeId = null): void

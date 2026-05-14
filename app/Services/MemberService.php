@@ -15,12 +15,20 @@ class MemberService
 
     public function getAll()
     {
-        return $this->repository->getAll();
+        $members = $this->repository->getAll();
+        $members->each(function ($member) {
+            $member->actions = $this->tableActionService->renderActions($member->id, 'members', false, true);
+        });
+        return $members;
     }
 
     public function getAllTrashed()
     {
-        return  $this->repository->getAllTrashed();
+        $members = $this->repository->getAllTrashed();
+        $members->each(function ($member) {
+            $member->actions = $this->tableActionService->renderActions($member->id, 'members', $member->trashed());
+        });
+        return $members;
     }
 
     public function findById(int $id)
@@ -46,31 +54,5 @@ class MemberService
     public function restore(int $id)
     {
         return $this->repository->restore($id);
-    }
-
-    public function renderActions(int $id, bool $trashed = false)
-    {
-        $actions = [];
-        $actions[] = $this->tableActionService->show(
-            $id,
-            route('members.findById', ['id' => $id])
-        );
-
-        if ($trashed) {
-            $actions[] = $this->tableActionService->restore(
-                $id,
-                route('members.restore', ['id' => $id])
-            );
-        } else {
-            $actions[] = $this->tableActionService->edit(
-                $id,
-                route('members.findById', ['id' => $id])
-            );
-            $actions[] = $this->tableActionService->delete(
-                $id,
-                route('members.delete', ['id' => $id])
-            );
-        }
-        return $actions;
     }
 }

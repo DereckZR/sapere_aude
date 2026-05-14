@@ -6,7 +6,37 @@ use App\Enums\TableButtonAction;
 
 class TableActionService
 {
-    public function button(
+    public function renderActions(int $id, string $prefix, bool $trashed = false, bool $show = false)
+    {
+        $actions = [];
+
+        if ($show) {
+            $actions[] = $this->show(
+                $id,
+                route($prefix . ".findById", ['id' => $id])
+            );
+        }
+
+        if ($trashed) {
+            $actions[] = $this->restore(
+                $id,
+                route($prefix . ".restore", ['id' => $id])
+            );
+        } else {
+            $actions[] = $this->edit(
+                $id,
+                route($prefix . ".findById", ['id' => $id])
+            );
+            $actions[] = $this->delete(
+                $id,
+                route($prefix . ".delete", ['id' => $id])
+            );
+        }
+
+        return $actions;
+    }
+
+    private function button(
         string $type,
         TableButtonAction $action,
         int $id,
@@ -22,7 +52,7 @@ class TableActionService
         ])->render();
     }
 
-    public function show(int $id, string $url): string
+    private function show(int $id, string $url): string
     {
         return $this->button(
             'secondary',
@@ -33,7 +63,7 @@ class TableActionService
         );
     }
 
-    public function edit(int $id, string $url): string
+    private function edit(int $id, string $url): string
     {
         return $this->button(
             'primary',
@@ -44,7 +74,7 @@ class TableActionService
         );
     }
 
-    public function delete(int $id, string $url): string
+    private function delete(int $id, string $url): string
     {
         return $this->button(
             'danger',
@@ -55,7 +85,7 @@ class TableActionService
         );
     }
 
-    public function restore(int $id, string $url): string
+    private function restore(int $id, string $url): string
     {
         return $this->button(
             'success',
