@@ -23,9 +23,14 @@ export function handleValidationErrors(errors) {
 
         if (!input) return;
 
-        input.classList.add('is-invalid');
+        const feedback = input.parentElement.querySelector('.invalid-feedback');
 
-        const feedback = input.nextElementSibling;
+        if (input.tomselect) {
+            input.tomselect.wrapper.classList.add('is-invalid');
+        } else {
+            input.classList.add('is-invalid');
+        }
+
         if (feedback && feedback.classList.contains('invalid-feedback')) {
             feedback.textContent = errors[field][0]; // solo el primer error
         }

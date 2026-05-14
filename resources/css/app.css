@@ -50,6 +50,12 @@
     color: #ffffff;
 }
 
+.ts-wrapper.is-invalid {
+    border-color: #dc3545 !important;
+    border: 1px solid #dc3545 !important;
+    border-radius: 5px !important;
+}
+
 .modalOverlay {
     position: absolute;
     inset: 0;

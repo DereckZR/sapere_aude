@@ -54,6 +54,23 @@ class MemberController extends Controller
                 'before_or_equal:' . now()->subYears(12)->format('Y-m-d')
             ],
             'admission_cycle_id' => 'required|integer|exists:cycles,id',
+            'last_active_cycle_id' => [
+                'required',
+                'exists:cycles,id',
+                'equal_or_after' => function ($attribute, $value, $fail) use ($request) {
+
+                    $admissionCycle = $this->cycleService->findById($request->admission_cycle_id);
+                    $lastActiveCycle = $this->cycleService->findById($value);
+
+                    if (
+                        $admissionCycle &&
+                        $lastActiveCycle &&
+                        $lastActiveCycle->start_date < $admissionCycle->start_date
+                    ) {
+                        $fail('El ciclo de última actividad debe ser igual o posterior al ciclo de ingreso.');
+                    }
+                },
+            ],
         ], [
             'first_name.required' => 'El nombre es obligatorio.',
             'first_name.string' => 'El nombre debe ser una cadena de texto.',
@@ -74,6 +91,9 @@ class MemberController extends Controller
             'birth_date.before_or_equal' => 'Debe tener al menos 12 años de edad.',
             'admission_cycle_id.required' => 'El ciclo de ingreso es obligatorio.',
             'admission_cycle_id.exists' => 'El ciclo de ingreso seleccionado no existe.',
+            'last_active_cycle_id.required' => 'El ciclo de última actividad es obligatorio.',
+            'last_active_cycle_id.exists' => 'El ciclo de última actividad seleccionado no existe.',
+            'last_active_cycle_id.equal_or_after' => 'El ciclo de última actividad debe ser igual o posterior al ciclo de ingreso.'
         ]);
         $data['last_active_cycle_id'] = $data['admission_cycle_id'];
         $dto = new CreateMemberDTO($data);
