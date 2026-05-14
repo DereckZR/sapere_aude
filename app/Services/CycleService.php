@@ -58,11 +58,17 @@ class CycleService
     {
         $ciclo = $this->repository->findTrashedById($id);
 
-        $this->validateCycleDates(
+        $hasOverlap = $this->hasDateOverlap(
             $ciclo->start_date,
             $ciclo->end_date,
             $id
         );
+
+        if ($hasOverlap) {
+            throw ValidationException::withMessages([
+                'start_date' => 'Ya existe un ciclo en ese rango de fechas.'
+            ]);
+        }
 
         $this->repository->restore($id);
     }
@@ -88,29 +94,12 @@ class CycleService
         });
     }
 
-    public function validateCycleDates(string $startDate, string $endDate, ?int $excludeId = null): void
+    public function hasDateOverlap(string $startDate, string $endDate, ?int $excludeId = null): bool
     {
-        $start = Carbon::parse($startDate);
-        $end = Carbon::parse($endDate);
-
-        $duration = $start->diffInDays($end);
-
-        if ($duration < 7) {
-            throw ValidationException::withMessages([
-                'end_date' => 'El ciclo debe tener una duración mínima de 7 días.'
-            ]);
-        }
-
-        $hasOverlap = $this->repository->hasDateOverlap(
+        return $this->repository->hasDateOverlap(
             $startDate,
             $endDate,
             $excludeId
         );
-
-        if ($hasOverlap) {
-            throw ValidationException::withMessages([
-                'start_date' => 'Ya existe un ciclo en ese rango de fechas.'
-            ]);
-        }
     }
 }
