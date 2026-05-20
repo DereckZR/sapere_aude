@@ -10,7 +10,7 @@ class CycleValidationTest extends TestCase
 
     public function test_start_date_cannot_be_after_end_date(): void
     {
-        $cycle = Cycle::factory()->create([
+        $cycle = Cycle::factory()->make([
             'start_date' => '2025-01-01',
             'end_date' => '2024-01-01',
         ])->toArray();
@@ -24,7 +24,7 @@ class CycleValidationTest extends TestCase
 
     public function test_start_date_can_be_before_end_date(): void
     {
-        $cycle = Cycle::factory()->create([
+        $cycle = Cycle::factory()->make([
             'start_date' => '2024-01-01',
             'end_date' => '2025-01-01',
         ])->toArray();
@@ -36,7 +36,7 @@ class CycleValidationTest extends TestCase
 
     public function test_start_date_cannot_be_equal_to_end_date(): void
     {
-        $cycle = Cycle::factory()->create([
+        $cycle = Cycle::factory()->make([
             'start_date' => '2024-01-01',
             'end_date' => '2024-01-01',
         ])->toArray();
