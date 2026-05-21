@@ -26,25 +26,31 @@ class MemberRepository implements MemberRepositoryInterface
 
     public function create(CreateMemberDTO $dto)
     {
-        return Member::create((array) $dto);
+        $newMember = Member::create((array) $dto);
+
+        if ($dto->cycle_id !== null) {
+            $newMember->cycles()->attach($dto->cycle_id);
+        }
+
+        return $newMember;
     }
 
     public function update(UpdateMemberDTO $dto)
     {
-        $item = Member::findOrFail($dto->id);
-        $item->update((array) $dto);
-        return $item;
+        $member = Member::findOrFail($dto->id);
+        $member->update((array) $dto);
+        return $member;
     }
 
     public function delete(int $id)
     {
-        $item = Member::findOrFail($id);
-        $item->delete();
+        $member = Member::findOrFail($id);
+        $member->delete();
     }
 
     public function restore(int $id)
     {
-        $item = Member::withTrashed()->findOrFail($id);
-        $item->restore();
+        $member = Member::withTrashed()->findOrFail($id);
+        $member->restore();
     }
 }
