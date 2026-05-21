@@ -32,9 +32,12 @@ class Cycle extends Model
     |--------------------------------------------------------------------------
     */
 
-    public function membersAdmitted()
+    public function members()
     {
-        return $this->hasMany(Member::class, 'admission_cycle_id');
+        return $this->belongsToMany(Member::class, 'cycle_members')
+            ->using(CycleMember::class)
+            ->withPivot(['id', 'deleted_at'])
+            ->withTimestamps();
     }
 
     public function branches()

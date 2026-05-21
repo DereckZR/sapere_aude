@@ -19,8 +19,6 @@ class Member extends Model
         'career',
         'phone_number',
         'birth_date',
-        'admission_cycle_id',
-        'last_active_cycle_id',
     ];
 
     protected $casts = [
@@ -33,26 +31,16 @@ class Member extends Model
     |--------------------------------------------------------------------------
     */
 
-    public function admissionCycle()
-    {
-        return $this->belongsTo(Cycle::class, 'admission_cycle_id');
-    }
-
-    public function lastActiveCycle()
-    {
-        return $this->belongsTo(Cycle::class, 'last_active_cycle_id');
-    }
-
     public function contributions()
     {
         return $this->hasMany(MemberContribution::class);
     }
 
-    public function directives()
+    public function cycles()
     {
-        return $this->belongsToMany(Directive::class, 'directive_members')
-            ->using(DirectiveMember::class)
-            ->withPivot(['id', 'is_leader', 'deleted_at'])
+        return $this->belongsToMany(Cycle::class, 'cycle_members')
+            ->using(CycleMember::class)
+            ->withPivot(['id', 'deleted_at'])
             ->withTimestamps();
     }
 
@@ -61,6 +49,14 @@ class Member extends Model
         return $this->belongsToMany(Branch::class, 'branch_members')
             ->using(BranchMember::class)
             ->withPivot(['id', 'deleted_at'])
+            ->withTimestamps();
+    }
+
+    public function directives()
+    {
+        return $this->belongsToMany(Directive::class, 'directive_members')
+            ->using(DirectiveMember::class)
+            ->withPivot(['id', 'is_leader', 'deleted_at'])
             ->withTimestamps();
     }
 

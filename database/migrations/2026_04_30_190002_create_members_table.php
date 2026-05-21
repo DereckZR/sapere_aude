@@ -18,8 +18,14 @@ return new class extends Migration
             $table->string('career');
             $table->string('phone_number', 20)->nullable();
             $table->date('birth_date')->nullable();
-            $table->foreignId('admission_cycle_id')->constrained('cycles')->restrictOnDelete();
-            $table->foreignId('last_active_cycle_id')->nullable()->constrained('cycles')->restrictOnDelete();
+            $table->timestamps();
+            $table->softDeletes();
+        });
+
+        Schema::create('cycle_members', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('member_id')->constrained()->restrictOnDelete();
+            $table->foreignId('cycle_id')->constrained()->restrictOnDelete();
             $table->timestamps();
             $table->softDeletes();
         });
@@ -41,6 +47,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::dropIfExists('member_contributions');
+        Schema::dropIfExists('cycle_members');
         Schema::dropIfExists('members');
     }
 };
