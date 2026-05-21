@@ -12,6 +12,10 @@ export function initMembersTable() {
                 title: '#'
             },
             {
+                data: 'document_number',
+                title: 'C.I.',
+            },
+            {
                 data: 'first_name',
                 title: 'Nombres',
             },

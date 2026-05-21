@@ -14,6 +14,7 @@ class Member extends Model
     protected $table = 'members';
 
     protected $fillable = [
+        'document_number',
         'first_name',
         'last_name',
         'career',

@@ -16,6 +16,13 @@ class StoreMemberRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'document_number' => [
+                'required',
+                'string',
+                'max:255',
+                'unique:members,document_number'
+            ],
+
             'first_name' => [
                 'required',
                 'string',
@@ -63,6 +70,9 @@ class StoreMemberRequest extends FormRequest
             '*.string' => 'Este campo debe ser una cadena de texto.',
             '*.integer' => 'Este campo debe ser un número entero.',
             '*.max' => 'El valor ingresado excede el límite permitido.',
+
+            'document_number.unique' =>
+            'El número de carnet de identidad ya está en uso.',
 
             'phone_number.regex' =>
             'El número de teléfono no tiene un formato válido.',
