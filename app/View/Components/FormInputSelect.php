@@ -10,11 +10,13 @@ class FormInputSelect extends Component
 {
     public string $name;
     public string $label;
+    public bool $required;
 
-    public function __construct(string $name, string $label)
+    public function __construct(string $name, string $label, bool $required = true)
     {
         $this->name = $name;
         $this->label = $label;
+        $this->required = $required;
     }
 
     /**
