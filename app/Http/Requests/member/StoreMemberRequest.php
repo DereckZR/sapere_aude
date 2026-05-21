@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\member;
 
 use Illuminate\Foundation\Http\FormRequest;
 use App\Services\CycleService;
@@ -48,16 +48,10 @@ class StoreMemberRequest extends FormRequest
                 'before_or_equal:' . now()->subYears(12)->format('Y-m-d')
             ],
 
-            'admission_cycle_id' => [
-                'required',
+            'cycle_id' => [
+                'sometimes',
                 'integer',
                 'exists:cycles,id'
-            ],
-
-            'last_active_cycle_id' => [
-                'required',
-                'integer',
-                'exists:cycles,id',
             ],
         ];
     }
@@ -82,38 +76,8 @@ class StoreMemberRequest extends FormRequest
             'birth_date.before_or_equal' =>
             'Debe tener al menos 12 años de edad.',
 
-            'admission_cycle_id.exists' =>
+            'cycle_id.exists' =>
             'El ciclo de ingreso seleccionado no existe.',
-
-            'last_active_cycle_id.exists' =>
-            'El ciclo de última actividad seleccionado no existe.',
         ];
-    }
-
-    public function withValidator(Validator $validator): void
-    {
-        $validator->after(function ($validator) {
-
-            $cycleService = app(CycleService::class);
-
-            $admissionCycle = $cycleService->findById(
-                $this->admission_cycle_id
-            );
-
-            $lastActiveCycle = $cycleService->findById(
-                $this->last_active_cycle_id
-            );
-
-            if (
-                $admissionCycle &&
-                $lastActiveCycle &&
-                $lastActiveCycle->start_date < $admissionCycle->start_date
-            ) {
-                $validator->errors()->add(
-                    'last_active_cycle_id',
-                    'El ciclo de última actividad debe ser igual o posterior al ciclo de ingreso.'
-                );
-            }
-        });
     }
 }

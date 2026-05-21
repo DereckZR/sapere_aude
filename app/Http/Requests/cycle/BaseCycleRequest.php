@@ -49,6 +49,11 @@ abstract class BaseCycleRequest extends FormRequest
 
         $validator->after(function ($validator) {
 
+            /*
+            |--------------------------------------------------------------------------
+            | Función para validar la duración mínima del ciclo
+            |--------------------------------------------------------------------------
+            */
             $start = Carbon::parse($this->start_date);
             $end = Carbon::parse($this->end_date);
 
@@ -61,6 +66,11 @@ abstract class BaseCycleRequest extends FormRequest
                 );
             }
 
+            /*
+            |--------------------------------------------------------------------------
+            | Función para validar la superposición de fechas con otros ciclos existentes
+            |--------------------------------------------------------------------------
+            */
             $cycleService = app(CycleService::class);
 
             $hasDateOverlap = $cycleService->hasDateOverlap(

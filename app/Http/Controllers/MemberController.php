@@ -7,7 +7,7 @@ use App\Services\MemberService;
 use App\Services\CycleService;
 use App\DTOs\Member\CreateMemberDTO;
 use App\DTOs\Member\UpdateMemberDTO;
-use App\Http\Requests\StoreMemberRequest;
+use App\Http\Requests\member\StoreMemberRequest;
 
 class MemberController extends Controller
 {

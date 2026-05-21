@@ -14,15 +14,9 @@ export function initCreateMember() {
             const cycles = await apiFetch(url);
 
             loadTomSelectOptions({
-                selector: '#admission_cycle_id',
+                selector: '#cycle_id',
                 options: cycles,
                 placeholder: 'Seleccione el ciclo de ingreso'
-            });
-
-            loadTomSelectOptions({
-                selector: '#last_active_cycle_id',
-                options: cycles,
-                placeholder: 'Seleccione el último ciclo activo'
             });
 
         } catch (error) {
