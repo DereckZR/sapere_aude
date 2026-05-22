@@ -26,5 +26,15 @@ export const ordinalNumbersNames = {
     17: 'Decimoséptimo',
     18: 'Decimoctavo',
     19: 'Decimonoveno',
-    20: 'Vigésimo'
+    20: 'Vigésimo',
+    21: 'Vigésimo primer',
+    22: 'Vigésimo segundo',
+    23: 'Vigésimo tercer',
+    24: 'Vigésimo cuarto',
+    25: 'Vigésimo quinto',
+    26: 'Vigésimo sexto',
+    27: 'Vigésimo séptimo',
+    28: 'Vigésimo octavo',
+    29: 'Vigésimo noveno',
+    30: 'Trigésimo'
 };

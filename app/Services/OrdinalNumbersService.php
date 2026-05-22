@@ -2,12 +2,12 @@
 
 namespace App\Services;
 
-class OrdinalNamesService
+class OrdinalNumbersService
 {
     protected array $ordinalNumbers = [
         1 => 'primer',
         2 => 'segundo',
-        3 => 'tercero',
+        3 => 'tercer',
         4 => 'cuarto',
         5 => 'quinto',
         6 => 'sexto',
@@ -15,9 +15,9 @@ class OrdinalNamesService
         8 => 'octavo',
         9 => 'noveno',
         10 => 'décimo',
-        11 => 'décimo primero',
+        11 => 'décimo primer',
         12 => 'décimo segundo',
-        13 => 'décimo tercero',
+        13 => 'décimo tercer',
         14 => 'décimo cuarto',
         15 => 'décimo quinto',
         16 => 'décimo sexto',
@@ -25,9 +25,9 @@ class OrdinalNamesService
         18 => 'décimo octavo',
         19 => 'décimo noveno',
         20 => 'vigésimo',
-        21 => 'vigésimo primero',
+        21 => 'vigésimo primer',
         22 => 'vigésimo segundo',
-        23 => 'vigésimo tercero',
+        23 => 'vigésimo tercer',
         24 => 'vigésimo cuarto',
         25 => 'vigésimo quinto',
         26 => 'vigésimo sexto',
@@ -35,9 +35,9 @@ class OrdinalNamesService
         28 => 'vigésimo octavo',
         29 => 'vigésimo noveno',
         30 => 'trigésimo',
-        31 => 'trigésimo primero',
+        31 => 'trigésimo primer',
         32 => 'trigésimo segundo',
-        33 => 'trigésimo tercero',
+        33 => 'trigésimo tercer',
         34 => 'trigésimo cuarto',
         35 => 'trigésimo quinto',
         36 => 'trigésimo sexto',
@@ -45,9 +45,9 @@ class OrdinalNamesService
         38 => 'trigésimo octavo',
         39 => 'trigésimo noveno',
         40 => 'cuadragésimo',
-        41 => 'cuadragésimo primero',
+        41 => 'cuadragésimo primer',
         42 => 'cuadragésimo segundo',
-        43 => 'cuadragésimo tercero',
+        43 => 'cuadragésimo tercer',
         44 => 'cuadragésimo cuarto',
         45 => 'cuadragésimo quinto',
         46 => 'cuadragésimo sexto',
