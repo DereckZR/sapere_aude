@@ -15,6 +15,7 @@ class Cycle extends Model
     protected $table = 'cycles';
 
     protected $fillable = [
+        'cycle_number',
         'start_date',
         'end_date',
         'state',
@@ -31,7 +32,6 @@ class Cycle extends Model
     | Relationships
     |--------------------------------------------------------------------------
     */
-
     public function members()
     {
         return $this->belongsToMany(Member::class, 'cycle_members')

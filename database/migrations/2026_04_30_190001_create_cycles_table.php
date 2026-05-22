@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('cycles', function (Blueprint $table) {
             $table->id();
+            $table->integer('cycle_number')->nullable();
             $table->date('start_date');
             $table->date('end_date');
             $table->enum('state', ['closed', 'current', 'upcoming'])->default('upcoming');
