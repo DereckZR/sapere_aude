@@ -19,7 +19,7 @@ class StoreMemberRequest extends FormRequest
             'document_number' => [
                 'required',
                 'string',
-                'max:255',
+                'size:7',
                 'unique:members,document_number'
             ],
 
@@ -56,7 +56,7 @@ class StoreMemberRequest extends FormRequest
             ],
 
             'cycle_id' => [
-                'sometimes',
+                'nullable',
                 'integer',
                 'exists:cycles,id'
             ],
@@ -73,6 +73,9 @@ class StoreMemberRequest extends FormRequest
 
             'document_number.unique' =>
             'El número de carnet de identidad ya está en uso.',
+
+            'document_number.size' =>
+            'El número de carnet de identidad debe tener exactamente 7 caracteres.',
 
             'phone_number.regex' =>
             'El número de teléfono no tiene un formato válido.',

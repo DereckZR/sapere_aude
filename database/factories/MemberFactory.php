@@ -10,13 +10,15 @@ class MemberFactory extends Factory
     public function definition(): array
     {
         return [
+            'document_number' => fake()->unique()->numerify('#######'),
             'first_name' => fake()->firstName(),
             'last_name' => fake()->lastName(),
-            'career' => fake()->word(),
-            'phone_number' => fake()->phoneNumber(),
-            'birth_date' => fake()->date(),
-            'admission_cycle_id' => null,
-            'last_active_cycle_id' => null,
+            'career' => fake()->words(2, true),
+            'phone_number' => fake()->numerify('7#######'),
+            'birth_date' => fake()->dateTimeBetween(
+                '-60 years',
+                '-12 years'
+            )->format('Y-m-d'),
         ];
     }
 }

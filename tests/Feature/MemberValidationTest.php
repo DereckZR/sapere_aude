@@ -9,47 +9,65 @@ class MemberValidationTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_last_active_cycle_cannot_be_before_admission_cycle(): void
+    public function test_create_member_with_null_required_fields(): void
     {
-        $admissionCycle = Cycle::factory()->create([
-            'start_date' => '2025-01-01',
+        $response = $this->post('/members', [
+            'document_number' => null,
+            'first_name' => null,
+            'last_name' => null,
+            'career' => null,
+            'phone_number' => null,
+            'birth_date' => null,
         ]);
 
-        $lastActiveCycle = Cycle::factory()->create([
-            'start_date' => '2024-01-01',
+        $response->assertSessionHasErrors([
+            'document_number',
+            'first_name',
+            'last_name',
+            'career',
+            'phone_number',
+            'birth_date',
+        ]);
+    }
+
+    public function test_create_member_with_existing_document_number(): void
+    {
+        Member::factory()->create([
+            'document_number' => '9100777',
         ]);
 
         $memberData = Member::factory()->make([
-            'admission_cycle_id' => $admissionCycle->id,
-            'last_active_cycle_id' => $lastActiveCycle->id,
+            'document_number' => '9100777',
         ])->toArray();
 
         $response = $this->post('/members', $memberData);
 
         $response->assertSessionHasErrors([
-            'last_active_cycle_id'
+            'document_number'
         ]);
     }
 
-    public function test_last_active_cycle_can_be_after_admission_cycle(): void
+    public function test_create_member_with_cycle_id(): void
     {
-        $admissionCycle = Cycle::factory()->create([
-            'start_date' => '2024-01-01',
-        ]);
+        $cycle = Cycle::factory()->create();
 
-        $lastActiveCycle = Cycle::factory()->create([
-            'start_date' => '2025-01-01',
-        ]);
+        $memberData = Member::factory()->make()->toArray();
 
-        $memberData = Member::factory()->make([
-            'phone_number' => '1234567890',
-            'birth_date' => '2000-01-01',
-            'admission_cycle_id' => $admissionCycle->id,
-            'last_active_cycle_id' => $lastActiveCycle->id,
-        ])->toArray();
+        $memberData['cycle_id'] = $cycle->id;
 
         $response = $this->post('/members', $memberData);
 
-        $response->assertSessionDoesntHaveErrors();
+        $response->assertSessionHasNoErrors();
+
+        $this->assertDatabaseHas('members', [
+            'document_number' => $memberData['document_number'],
+        ]);
+
+        $member = Member::query()->where('document_number', $memberData['document_number'])->first();
+
+        $this->assertDatabaseHas('cycle_members', [
+            'cycle_id' => $cycle->id,
+            'member_id' => $member->id,
+        ]);
     }
 }
