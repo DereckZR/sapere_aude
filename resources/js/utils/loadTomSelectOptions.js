@@ -14,6 +14,9 @@ export function loadTomSelectOptions({
 
     const select = $(selector);
 
+    const contenedor = select.closest('.form-group');
+    contenedor.removeClass('d-none');
+
     if (select[0]?.tomselect) {
         select[0].tomselect.destroy();
     }

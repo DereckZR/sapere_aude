@@ -5,6 +5,7 @@ export function initEditCycle() {
     $(document).on('click', '.btn-edit', async function () {
         const loader = $('#modalLoader');
         const ModalError = $('#modalError');
+
         try {
             loader.removeClass('d-none');
             ModalError.addClass('d-none');
