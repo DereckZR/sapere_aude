@@ -8,12 +8,9 @@ export function initMembersTable() {
         order: [],
         columns: [
             {
-                data: 'id',
-                title: '#'
-            },
-            {
                 data: 'document_number',
                 title: 'C.I.',
+                orderable: false,
             },
             {
                 data: 'first_name',
@@ -30,6 +27,7 @@ export function initMembersTable() {
             {
                 data: 'phone_number',
                 title: 'Teléfono',
+                orderable: false,
             },
             {
                 data: 'actions',
