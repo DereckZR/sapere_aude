@@ -297,7 +297,7 @@ class Update{$name}DTO
         $interface = "\\App\\Repositories\\Interfaces\\{$name}RepositoryInterface::class";
         $repository = "\\App\\Repositories\\{$name}Repository::class";
 
-        $binding = "\n        \$this->app->bind({$interface}, {$repository});";
+        $binding = "\n        \$this->app->scoped({$interface}, {$repository});";
 
         $content = file_get_contents($providerPath);
 

@@ -11,8 +11,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        $this->app->singleton(\App\Repositories\Interfaces\MemberRepositoryInterface::class, \App\Repositories\MemberRepository::class);
-        $this->app->singleton(\App\Repositories\Interfaces\CycleRepositoryInterface::class, \App\Repositories\CycleRepository::class);
+        $this->app->scoped(\App\Repositories\Interfaces\MemberRepositoryInterface::class, \App\Repositories\MemberRepository::class);
+        $this->app->scoped(\App\Repositories\Interfaces\CycleRepositoryInterface::class, \App\Repositories\CycleRepository::class);
     }
 
     /**
