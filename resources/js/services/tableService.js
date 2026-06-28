@@ -10,7 +10,7 @@ export async function fillData(dataTable, tableSelector = '#mainTable') {
         const showDeleted = $('#showDeleted').is(':checked');
 
         const url = showDeleted
-            ? table.data('deleted-url')
+            ? table.data('trashed-url')
             : table.data('url');
 
         const data = await apiFetch(url);

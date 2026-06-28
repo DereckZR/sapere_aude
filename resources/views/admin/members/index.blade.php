@@ -21,7 +21,7 @@
     </div>
 
     <table id="mainTable" class="table table-bordered table-striped table-hover" data-url="{{ route('members.getAll') }}"
-        data-deleted-url="{{ route('members.getAllTrashed') }}">
+        data-trashed-url="{{ route('members.getAllTrashed') }}">
     </table>
 
     @include('admin.members.partials.memberModal')
