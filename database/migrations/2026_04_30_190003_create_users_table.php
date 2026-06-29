@@ -13,14 +13,14 @@ return new class extends Migration
     {
         Schema::create('roles', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->unique();
+            $table->string('name', 50)->unique();
             $table->timestamps();
             $table->softDeletes();
         });
 
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('username')->unique();
+            $table->string('username', 10)->unique();
             $table->string('password');
             $table->foreignId('member_id')->unique()->constrained()->restrictOnDelete();
             $table->foreignId('role_id')->constrained()->restrictOnDelete();

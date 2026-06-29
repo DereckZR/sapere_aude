@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('transaction_categories', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('name', 50);
             $table->text('description')->nullable();
             $table->enum('type', ['in', 'out']);
             $table->boolean('is_protected')->default(false);
