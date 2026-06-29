@@ -5,6 +5,7 @@ namespace App\DTOs\Member;
 class CreateMemberDTO
 {
     public string $document_number;
+    public string $document_extension;
     public string $first_name;
     public string $last_name;
     public string $career;
@@ -16,6 +17,7 @@ class CreateMemberDTO
         public readonly array $data
     ) {
         $this->document_number = $data['document_number'];
+        $this->document_extension = $data['document_extension'];
         $this->first_name = $data['first_name'];
         $this->last_name = $data['last_name'];
         $this->career = $data['career'];

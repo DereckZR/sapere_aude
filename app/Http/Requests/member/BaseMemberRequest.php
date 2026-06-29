@@ -21,6 +21,12 @@ class BaseMemberRequest extends FormRequest
                 'unique:members,document_number'
             ],
 
+            'document_extension' => [
+                'required',
+                'string',
+                'max:2',
+            ],
+
             'first_name' => [
                 'required',
                 'string',

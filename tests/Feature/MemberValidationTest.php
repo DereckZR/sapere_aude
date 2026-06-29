@@ -52,9 +52,10 @@ class MemberValidationTest extends TestCase
         $cycle = Cycle::factory()->create();
 
         $memberData = Member::factory()->make()->toArray();
+        dump('Status:', $memberData);
 
         $memberData['cycle_id'] = $cycle->id;
-
+        
         $response = $this->post('/members', $memberData);
 
         $response->assertSessionHasNoErrors();
@@ -69,5 +70,6 @@ class MemberValidationTest extends TestCase
             'cycle_id' => $cycle->id,
             'member_id' => $member->id,
         ]);
+
     }
 }

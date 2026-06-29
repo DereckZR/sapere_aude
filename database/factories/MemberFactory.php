@@ -11,6 +11,7 @@ class MemberFactory extends Factory
     {
         return [
             'document_number' => fake()->unique()->numerify('#######'),
+            'document_extension' => fake()->lexify('??'),
             'first_name' => fake()->firstName(),
             'last_name' => fake()->lastName(),
             'career' => fake()->words(2, true),

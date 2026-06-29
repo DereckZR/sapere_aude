@@ -15,6 +15,7 @@ class Member extends Model
 
     protected $fillable = [
         'document_number',
+        'document_extension',
         'first_name',
         'last_name',
         'career',

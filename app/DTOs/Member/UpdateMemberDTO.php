@@ -6,6 +6,7 @@ class UpdateMemberDTO
 {
     public int $id;
     public string $document_number;
+    public string $document_extension;
     public string $first_name;
     public string $last_name;
     public string $career;
@@ -17,6 +18,7 @@ class UpdateMemberDTO
     ) {
         $this->id = $data['id'];
         $this->document_number = $data['document_number'];
+        $this->document_extension = $data['document_extension'];
         $this->first_name = $data['first_name'];
         $this->last_name = $data['last_name'];
         $this->career = $data['career'];
