@@ -4,6 +4,8 @@ use App\Http\Controllers\CycleController;
 use App\Http\Controllers\MemberController;
 use Illuminate\Support\Facades\Route;
 
+require __DIR__ . '/admin/users.php';
+
 Route::get('/home', function () {
     return view('welcome');
 })->name('home');

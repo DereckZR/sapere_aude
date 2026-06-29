@@ -348,6 +348,11 @@ return [
             'url' => 'cycles',
             'icon' => 'fas fa-fw fa-calendar-check',
         ],
+        [
+            'text' => 'users',
+            'url' => 'users',
+            'icon' => 'fas fa-fw fa-users',
+        ],
     ],
 
     /*

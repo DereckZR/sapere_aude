@@ -61,6 +61,10 @@ if (module === 'members') {
     import('./modules/members');
 }
 
+// if (module === 'members') {
+//     import('./modules/users');
+// }
+
 /*
 |--------------------------------------------------------------------------
 | FormModal

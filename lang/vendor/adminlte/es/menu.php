@@ -20,6 +20,7 @@ return [
     // Custom menu items
     'cycles' => 'Ciclos',
     'members' => 'Miembros',
+    'users' => 'Usuarios',
     'transactions' => 'Transacciones',
     'contributions' => 'Aportes',
     'directives' => 'Directivas',
