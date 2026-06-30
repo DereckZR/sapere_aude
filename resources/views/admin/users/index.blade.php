@@ -11,7 +11,7 @@
 @endsection
 
 @section('content')
-    <button type="button" class="btn btn-primary mb-3" id="btnCreate">
+    <button type="button" class="btn btn-primary mb-3" id="btnCreate" data-members-url="{{ route('members.getAllForSelect') }}" data-roles-url="{{ route('roles.getAllForSelect') }}">
         <i class="fas fa-plus"></i> Registrar usuario
     </button>
 

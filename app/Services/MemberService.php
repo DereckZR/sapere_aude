@@ -5,6 +5,7 @@ namespace App\Services;
 use App\DTOs\Member\CreateMemberDTO;
 use App\DTOs\Member\UpdateMemberDTO;
 use App\Repositories\Interfaces\MemberRepositoryInterface;
+use Illuminate\Validation\ValidationException;
 
 class MemberService
 {
@@ -39,6 +40,24 @@ class MemberService
             );
         });
         return $members;
+    }
+
+    public function getAllForSelect()
+    {
+        $members = $this->repository->getAll();
+
+        if ($members->isEmpty()) {
+            throw ValidationException::withMessages(['members' => 'No hay miembros disponibles. Por favor, agregué un miembro antes de registrar un usuario.']);
+        }
+
+        return $members->map(function ($member, $_) {
+            $text = "$member->document_number - $member->first_name $member->last_name";
+
+            return [
+                'id' => $member->id,
+                'text' => $text
+            ];
+        });
     }
 
     public function findById(int $id)
