@@ -23,4 +23,6 @@
     <table id="mainTable" class="table table-bordered table-striped table-hover" data-url="{{ route('users.getAll') }}"
         data-trashed-url="{{ route('users.getAllTrashed') }}">
     </table>
+
+    @include('admin.users.partials.userModal')
 @stop

@@ -61,9 +61,9 @@ if (module === 'members') {
     import('./modules/members');
 }
 
-// if (module === 'members') {
-//     import('./modules/users');
-// }
+if (module === 'users') {
+    import('./modules/users');
+}
 
 /*
 |--------------------------------------------------------------------------

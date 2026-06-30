@@ -10,8 +10,8 @@ export function initCreateUser() {
             loader.removeClass('d-none');
             ModalError.addClass('d-none');
 
-            const urlMembers = $(this).data('roles-url');
-            const urlRoles = $(this).data('members-url');
+            const urlMembers = $(this).data('members-url');
+            const urlRoles = $(this).data('roles-url');
             
             const members = await apiFetch(urlMembers);
             const roles = await apiFetch(urlRoles);

@@ -51,7 +51,7 @@ class MemberService
         }
 
         return $members->map(function ($member, $_) {
-            $text = "$member->document_number - $member->first_name $member->last_name";
+            $text = "$member->first_name $member->last_name - $member->document_number";
 
             return [
                 'id' => $member->id,

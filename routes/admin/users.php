@@ -3,4 +3,4 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 
-route::crud("users", UserController::class);
+Route::crud("users", UserController::class);

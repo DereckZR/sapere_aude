@@ -5,6 +5,8 @@ use App\Http\Controllers\MemberController;
 use Illuminate\Support\Facades\Route;
 
 require __DIR__ . '/admin/users.php';
+require __DIR__ . '/admin/members.php';
+require __DIR__ . '/admin/roles.php';
 
 Route::get('/home', function () {
     return view('welcome');
