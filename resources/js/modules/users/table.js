@@ -12,6 +12,14 @@ export function initUsersTable() {
                 title: "Usuario",
                 orderable: false,
             },
+            {
+                data: "role_name",
+                title: "Rol",
+            },
+            {
+                data: "full_name",
+                title:"Nombre completo"
+            },
             // {
             //     data: "document_number",
             //     title: "C.I.",

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Services\UserService;
 use App\DTOs\User\CreateUserDTO;
 use App\DTOs\User\UpdateUserDTO;
+use App\Http\Requests\user\StoreUserRequest;
 
 class UserController extends Controller
 {
@@ -31,9 +32,14 @@ class UserController extends Controller
         return response()->json($this->service->findById($id));
     }
 
-    public function store(Request $request)
+    public function generateUsername(int $id)
     {
-        $data = $request->all();
+        return response()->json($this->service->findById($id));
+    }
+
+    public function store(StoreUserRequest $request)
+    {
+        $data = $request->validated();
         $dto = new CreateUserDTO($data);
         return response()->json($this->service->create($dto));
     }

@@ -14,9 +14,25 @@ class UserRepository implements UserRepositoryInterface
         return User::all();
     }
 
+    public function getAllForList()
+    {
+        return User::with([
+            'role:id,name',
+            'member:id,first_name,last_name,document_number'
+        ])->get();
+    }
+
     public function getAllTrashed()
     {
         return User::withTrashed()->get();
+    }
+
+    public function getAllTrashedForList()
+    {
+        return User::with([
+            'role:id,name',
+            'member:id,first_name,last_name,document_number'
+        ])->withTrashed()->get();
     }
 
     public function findById(int $id)
@@ -24,9 +40,14 @@ class UserRepository implements UserRepositoryInterface
         return User::findOrFail($id);
     }
 
-    public function create(CreateUserDTO $dto)
+    public function existsBy(string $column, mixed $value): bool
     {
-        return User::create((array) $dto);
+        return User::query()->where($column, $value)->exists();
+    }
+
+    public function create(array $dto)
+    {
+        return User::create($dto);
     }
 
     public function update(UpdateUserDTO $dto)
