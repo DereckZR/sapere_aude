@@ -8,12 +8,15 @@
 */
 export function handleValidationErrors(errors) {
     // limpiar estados previos
-    document.querySelectorAll('.form-control').forEach(input => {
+     document.querySelectorAll('.form-control').forEach(input => {
         input.classList.remove('is-invalid');
 
-        const feedback = input.nextElementSibling;
+        const container = input.closest('.form-group');
+        const feedback = container?.querySelector('.invalid-feedback');
+
         if (feedback && feedback.classList.contains('invalid-feedback')) {
             feedback.textContent = '';
+            feedback.style.display = 'none';
         }
     });
 
@@ -23,8 +26,10 @@ export function handleValidationErrors(errors) {
 
         if (!input) return;
 
-        const feedback = input.parentElement.querySelector('.invalid-feedback');
+        const container = input.closest('.form-group');
+        const feedback = container?.querySelector('.invalid-feedback');
 
+        // TomSelect support
         if (input.tomselect) {
             input.tomselect.wrapper.classList.add('is-invalid');
         } else {
@@ -32,7 +37,8 @@ export function handleValidationErrors(errors) {
         }
 
         if (feedback && feedback.classList.contains('invalid-feedback')) {
-            feedback.textContent = errors[field][0]; // solo el primer error
+            feedback.textContent = errors[field][0];
+            feedback.style.display = 'block';
         }
     });
 }

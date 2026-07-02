@@ -1,38 +1,40 @@
-import { apiFetch } from '../../services/api.js';
-import { loadTomSelectOptions } from '../../utils/loadTomSelectOptions.js';
+import { apiFetch } from "../../services/api.js";
+import { loadTomSelectOptions } from "../../utils/loadTomSelectOptions.js";
+import { resetToggleVisibilityPassword } from "../../utils/toggleVisibilityPassword.js";
 
 export function initCreateUser() {
-    $('#btnCreate').on('click', async function () {
-        const loader = $('#modalLoader');
-        const ModalError = $('#modalError');
+    $("#btnCreate").on("click", async function () {
+        const loader = $("#modalLoader");
+        const ModalError = $("#modalError");
 
         try {
-            loader.removeClass('d-none');
-            ModalError.addClass('d-none');
+            resetToggleVisibilityPassword();
 
-            const urlMembers = $(this).data('members-url');
-            const urlRoles = $(this).data('roles-url');
-            
+            loader.removeClass("d-none");
+            ModalError.addClass("d-none");
+
+            const urlMembers = $(this).data("members-url");
+            const urlRoles = $(this).data("roles-url");
+
             const members = await apiFetch(urlMembers);
             const roles = await apiFetch(urlRoles);
 
             loadTomSelectOptions({
-                selector: '#role_id',
+                selector: "#role_id",
                 options: roles,
-                placeholder: 'Seleccione un role'
+                placeholder: "Seleccione un role",
             });
 
             loadTomSelectOptions({
-                selector: '#member_id',
+                selector: "#member_id",
                 options: members,
-                placeholder: 'Seleccione un miembro'
+                placeholder: "Seleccione un miembro",
             });
-
         } catch (error) {
-            ModalError.removeClass('d-none');
+            ModalError.removeClass("d-none");
             toastr.error(error.message);
         } finally {
-            loader.addClass('d-none');
+            loader.addClass("d-none");
         }
     });
-};
+}

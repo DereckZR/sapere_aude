@@ -9,6 +9,8 @@ use App\Repositories\Interfaces\UserRepositoryInterface;
 use DateTimeInterface;
 use Illuminate\Support\Facades\Hash;
 use RuntimeException;
+use App\Helpers\NameHelper;
+use Illuminate\Support\Str;
 
 class UserService
 {
@@ -108,7 +110,8 @@ class UserService
 
     private function generateUsername(string $firstName, string $lastName, DateTimeInterface $birthDate): string
     {
-        $initialLetters = strtoupper(substr($firstName, 0, 1) . substr($lastName, 0, 1));
+        $lastNameInitial = NameHelper::getSurnameInitial(Str::ascii($lastName)); 
+        $initialLetters = strtoupper(substr(Str::ascii($firstName), 0, 1) . $lastNameInitial);
 
         $year = $birthDate->format('Y');
 

@@ -8,9 +8,11 @@
 */
 function removeInvalidFeedback(input) {
     $(input).removeClass('is-invalid');
-    const feedback = $(input).next('.invalid-feedback');
+    const container = input.closest('.form-group');
+    const feedback = container?.querySelector('.invalid-feedback');
     if (feedback.length) {
         feedback.text('');
+        feedback.style.display = 'none';
     }
 }
 
