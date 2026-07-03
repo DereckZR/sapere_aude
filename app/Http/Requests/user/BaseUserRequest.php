@@ -34,7 +34,6 @@ class BaseUserRequest extends FormRequest
                     ->letters()
                     ->mixedCase()
                     ->numbers()
-                    ->symbols()
                 // ->uncompromised() //para verificar que la contraseña introducida no fue encontrada en BD de contraseñas vulneradas
             ],
         ];

@@ -69,7 +69,7 @@ class UserService
         $username = null;
 
         for ($i = 0; $i < 10; $i++) {
-            $usernameValue = $this->generateUsername($member->first_name, $member->last_name, $member->birth_date);
+            $usernameValue = $this->generateUsername($member->first_name, $member->last_name, $member->document_number);
 
             $existsUsername = $this->userRepository->existsBy('username', $usernameValue);
 
@@ -108,15 +108,15 @@ class UserService
         return $this->userRepository->restore($id);
     }
 
-    private function generateUsername(string $firstName, string $lastName, DateTimeInterface $birthDate): string
+    private function generateUsername(string $firstName, string $lastName, string $documentNumber): string
     {
-        $lastNameInitial = NameHelper::getSurnameInitial(Str::ascii($lastName)); 
+        $lastNameInitial = NameHelper::getSurnameInitial(Str::ascii($lastName));
         $initialLetters = strtoupper(substr(Str::ascii($firstName), 0, 1) . $lastNameInitial);
 
-        $year = $birthDate->format('Y');
+        $digitsDocumentNumber = substr($documentNumber, 0, 2);
 
         $number = random_int(100, 999);
 
-        return "{$initialLetters}{$number}{$year}";
+        return "{$initialLetters}{$number}{$digitsDocumentNumber}";
     }
 }
