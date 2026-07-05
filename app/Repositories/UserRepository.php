@@ -3,7 +3,6 @@
 namespace App\Repositories;
 
 use App\Models\User;
-use App\DTOs\User\CreateUserDTO;
 use App\DTOs\User\UpdateUserDTO;
 use App\Repositories\Interfaces\UserRepositoryInterface;
 
@@ -11,28 +10,20 @@ class UserRepository implements UserRepositoryInterface
 {
     public function getAll()
     {
-        return User::all();
-    }
-
-    public function getAllForList()
-    {
-        return User::with([
-            'role:id,name',
-            'member:id,first_name,last_name,document_number'
-        ])->get();
+        return User::whereHas('member')
+            ->with([
+                'role:id,name',
+                'member:id,first_name,last_name,document_number'
+            ])->get();
     }
 
     public function getAllTrashed()
     {
-        return User::withTrashed()->get();
-    }
-
-    public function getAllTrashedForList()
-    {
-        return User::with([
-            'role:id,name',
-            'member:id,first_name,last_name,document_number'
-        ])->withTrashed()->get();
+        return User::whereHas('member')
+            ->with([
+                'role:id,name',
+                'member:id,first_name,last_name,document_number'
+            ])->withTrashed()->get();
     }
 
     public function findById(int $id)

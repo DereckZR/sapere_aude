@@ -1,5 +1,5 @@
 import { apiFetch } from '../../services/api.js';
-import { formatDateForInput } from '../../utils/formatDate.js';
+import { loadTomSelectOptions } from "../../utils/loadTomSelectOptions.js";
 
 export function initEditUser() {
     $(document).on('click', '.btn-edit', async function () {
@@ -12,16 +12,17 @@ export function initEditUser() {
             const url = $(this).data('url');
             const data = await apiFetch(url);
 
-            $('#document_number').val(data.document_number);
-            $('#first_name').val(data.first_name);
-            $('#last_name').val(data.last_name);
-            $('#career').val(data.career);
-            $('#phone_number').val(data.phone_number);
-            $('#birth_date').val(
-                formatDateForInput(data.birth_date)
-            );
+            const urlRoles = $('#btnCreate').data("roles-url");
+            const roles = await apiFetch(urlRoles);
 
-            const select = $('#role_id');
+            $('#password__container').addClass('d-none');
+            $('#password_confirmation__container').addClass('d-none');
+
+            $('#password').prop('required', false);
+            $('#password_confirmation').prop('required', false);
+            $('#member_id').prop('required', false);
+
+            const select = $('#member_id');
             const contenedor = select.closest('.form-group');
             contenedor.addClass('d-none');
             // Si existe un TomSelect, lo destruimos
@@ -30,7 +31,17 @@ export function initEditUser() {
             }
             select.empty();
 
+            loadTomSelectOptions({
+                selector: '#role_id',
+                options: roles,
+                placeholder: 'Seleccione un role',
+            });
 
+            const roleSelect = $('#role_id');
+
+            if (roleSelect[0]?.tomselect) {
+                roleSelect[0].tomselect.setValue(data.role_id);
+            }
         } catch (error) {
             ModalError.removeClass('d-none');
             toastr.error(error.message);

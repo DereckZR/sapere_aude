@@ -25,4 +25,5 @@
     </table>
 
     @include('admin.users.partials.userModal')
+    {{-- @include('admin.users.partials.editUserModal') --}}
 @stop

@@ -22,11 +22,11 @@ class UserService
 
     public function getAll()
     {
-        $users = $this->userRepository->getAllForList();
+        $users = $this->userRepository->getAll();
 
         $users->each(function ($user) {
             $user->full_name =
-                $user->member->first_name . ' ' . $user->member->last_name;
+                $user->member->getFullNameAttribute();
             $user->role_name = $user->role->name;
             $user->actions = $this->tableActionService->renderActions(
                 $user->id,
@@ -41,10 +41,10 @@ class UserService
 
     public function getAllTrashed()
     {
-        $users = $this->userRepository->getAllTrashedForList();
+        $users = $this->userRepository->getAllTrashed();
         $users->each(function ($user) {
             $user->full_name =
-                $user->member->first_name . ' ' . $user->member->last_name;
+                $user->member->getFullNameAttribute();
             $user->role_name = $user->role->name;
             $user->actions = $this->tableActionService->renderActions(
                 $user->id,

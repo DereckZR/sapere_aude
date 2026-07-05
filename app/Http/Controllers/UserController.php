@@ -7,6 +7,7 @@ use App\Services\UserService;
 use App\DTOs\User\CreateUserDTO;
 use App\DTOs\User\UpdateUserDTO;
 use App\Http\Requests\user\StoreUserRequest;
+use App\Http\Requests\user\UpdateUserRequest;
 
 class UserController extends Controller
 {
@@ -44,9 +45,9 @@ class UserController extends Controller
         return response()->json($this->service->create($dto));
     }
 
-    public function update(Request $request, int $id)
+    public function update(UpdateUserRequest $request, int $id)
     {
-        $data = $request->all();
+        $data = $request->validated();
         $data['id'] = $id;
         $dto = new UpdateUserDTO($data);
         return response()->json($this->service->update($dto));

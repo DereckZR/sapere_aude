@@ -18,21 +18,8 @@ export function initUsersTable() {
             },
             {
                 data: "full_name",
-                title:"Nombre completo"
+                title: "Nombre completo"
             },
-            // {
-            //     data: "document_number",
-            //     title: "C.I.",
-            //     orderable: false,
-            // },
-            // {
-            //     data: "first_name",
-            //     title: "Nombres",
-            // },
-            // {
-            //     data: "last_name",
-            //     title: "Apellidos",
-            // },
             {
                 data: "actions",
                 title: "Acciones",

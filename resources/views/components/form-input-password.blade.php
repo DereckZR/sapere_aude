@@ -1,4 +1,4 @@
-<div class="form-group">
+<div class="form-group" id="{{ "{$name}__container" }}">
     <label for="{{ $name }}">{{ $label }}</label>
     <div class="input-group input-password__container">
         <input type="{{ $type }}" class="form-control input-password" name="{{ $name }}" id="{{ $name }}"
