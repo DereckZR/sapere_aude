@@ -3,4 +3,6 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 
-Route::crud("users", UserController::class);
+Route::middleware('auth')->group(function () {
+    Route::crud("users", UserController::class);
+});
