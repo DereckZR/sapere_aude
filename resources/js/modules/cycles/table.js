@@ -38,10 +38,10 @@ export function initCyclesTable() {
                 searchable: false,
                 render: function (data) {
                     const routes = $('#mainTable').data()
-                    console.log(data);
                     const id = data.id;
                     const actions = renderTableActions(routes, id,
                         {
+                            canShow: false,
                             canEdit: data.deleted_at ? false : true,
                             canDelete: data.deleted_at ? false : true,
                             canRestore: data.deleted_at ? true : false
