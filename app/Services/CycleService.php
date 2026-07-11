@@ -12,25 +12,18 @@ class CycleService
 {
     public function __construct(
         protected CycleRepositoryInterface $repository,
-        protected TableActionService $tableActionService,
         protected OrdinalNumbersService $ordinalNumbersService
     ) {}
 
     public function getAll()
     {
         $cycles = $this->repository->getAll();
-        $cycles->each(function ($cycle) {
-            $cycle->actions = $this->tableActionService->renderActions($cycle->id, 'cycles');
-        });
         return $cycles;
     }
 
     public function getAllTrashed()
     {
         $cycles = $this->repository->getAllTrashed();
-        $cycles->each(function ($cycle) {
-            $cycle->actions = $this->tableActionService->renderActions($cycle->id, 'cycles', $cycle->trashed());
-        });
         return $cycles;
     }
 

@@ -25,7 +25,7 @@ export function renderTableActions(routes, id, rules = {}, labels = {}) {
             action: ActionType.SHOW,
             id: id,
             url: findByIdUrl,
-            type: 'primary',
+            type: 'secondary',
             label: labels.show
         });
 
