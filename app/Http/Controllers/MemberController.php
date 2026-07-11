@@ -32,6 +32,11 @@ class MemberController extends Controller
         return response()->json($this->service->getAllTrashed());
     }
 
+    public function getAllForSelect()
+    {
+        return response()->json($this->service->getAllForSelect());
+    }
+
     public function findById(int $id)
     {
         return response()->json($this->service->findById($id));

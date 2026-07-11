@@ -1,7 +1,7 @@
 import { formatDate } from '../../utils/formatDate.js';
 import { DATATABLE_ES } from '../../utils/DATATABLE_ES.js';
 import { getCycleLabel } from '../../utils/getCycleLabel.js';
-import { renderTableActions, ActionType } from '../../utils/renderTableActions.js';
+import { renderTableActions } from '../../utils/renderTableActions.js';
 
 export function initCyclesTable() {
     return $('#mainTable').DataTable({
@@ -38,10 +38,10 @@ export function initCyclesTable() {
                 searchable: false,
                 render: function (data) {
                     const routes = $('#mainTable').data()
-                    console.log(data);
                     const id = data.id;
                     const actions = renderTableActions(routes, id,
                         {
+                            canShow: false,
                             canEdit: data.deleted_at ? false : true,
                             canDelete: data.deleted_at ? false : true,
                             canRestore: data.deleted_at ? true : false

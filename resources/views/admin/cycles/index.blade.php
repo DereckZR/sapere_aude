@@ -22,7 +22,7 @@
 
     <table id="mainTable" class="table table-bordered table-striped table-hover" data-url="{{ route('cycles.getAll') }}"
         data-trashed-url="{{ route('cycles.getAllTrashed') }}"
-        data-update-url="{{ route('cycles.update', ['id' => ':id']) }}"
+        data-find-by-id-url="{{ route('cycles.findById', ['id' => ':id']) }}"
         data-restore-url="{{ route('cycles.restore', ['id' => ':id']) }}"
         data-delete-url="{{ route('cycles.delete', ['id' => ':id']) }}">
     </table>

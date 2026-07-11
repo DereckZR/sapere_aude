@@ -1,5 +1,6 @@
 import { formatDate } from '../../utils/formatDate.js';
 import { DATATABLE_ES } from '../../utils/DATATABLE_ES.js';
+import { renderTableActions } from '../../utils/renderTableActions.js';
 
 export function initMembersTable() {
     return $('#mainTable').DataTable({
@@ -30,12 +31,27 @@ export function initMembersTable() {
                 orderable: false,
             },
             {
-                data: 'actions',
+                data: null,
                 title: 'Acciones',
                 orderable: false,
                 searchable: false,
                 render: function (data) {
-                    return data.join(' ');
+                    const routes = $('#mainTable').data()
+                    const id = data.id;
+                    const actions = renderTableActions(routes, id,
+                        {
+                            canShow: true,
+                            canEdit: data.deleted_at ? false : true,
+                            canDelete: data.deleted_at ? false : true,
+                            canRestore: data.deleted_at ? true : false
+                        },
+                        {
+                            show: 'Perfil',
+                        }
+                    );
+                    return actions
+                        .map(action => $(action).prop('outerHTML'))
+                        .join(' ');
                 }
             }
         ],

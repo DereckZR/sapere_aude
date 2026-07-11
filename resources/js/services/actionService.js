@@ -1,11 +1,14 @@
 import { apiFetch } from './api.js';
 import { confirmAction } from './swal.js';
 
-export function initDeleteAction(reloadTable) {
+export function initDeleteAction(
+    reloadTable,
+    confirmTextMsg = '¿Estás seguro de que deseas eliminar este registro?'
+) {
     initAction({
         selector: '.btn-delete',
         method: 'DELETE',
-        confirmText: '¿Estás seguro de que deseas eliminar este registro?',
+        confirmText: confirmTextMsg,
         successText: 'Eliminado correctamente',
         reloadTable
     });

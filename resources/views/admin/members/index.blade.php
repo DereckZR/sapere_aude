@@ -21,7 +21,10 @@
     </div>
 
     <table id="mainTable" class="table table-bordered table-striped table-hover" data-url="{{ route('members.getAll') }}"
-        data-trashed-url="{{ route('members.getAllTrashed') }}">
+        data-trashed-url="{{ route('members.getAllTrashed') }}"
+        data-find-by-id-url="{{ route('members.findById', ['id' => ':id']) }}"
+        data-restore-url="{{ route('members.restore', ['id' => ':id']) }}"
+        data-delete-url="{{ route('members.delete', ['id' => ':id']) }}">
     </table>
 
     @include('admin.members.partials.memberModal')

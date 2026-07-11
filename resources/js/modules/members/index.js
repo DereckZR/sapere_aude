@@ -2,9 +2,12 @@ import { fillData } from "../../services/tableService";
 import { initMembersTable } from "./table";
 import { initCreateMember } from "./create";
 import { initEditMember } from "./edit";
-import { initToggleDeleted } from '../../utils/toggleDeleted.js';
+import { initToggleDeleted } from "../../utils/toggleDeleted.js";
 import { initForm } from "../../services/formService.js";
-import { initDeleteAction, initRestoreAction } from '../../services/actionService.js';
+import {
+    initDeleteAction,
+    initRestoreAction,
+} from "../../services/actionService.js";
 
 $(async function () {
     const dataTable = initMembersTable();
@@ -17,9 +20,9 @@ $(async function () {
     initCreateMember();
     initEditMember();
 
-    initDeleteAction(() => fillData(dataTable));
+    initDeleteAction(
+        () => fillData(dataTable),
+        "¿Estás seguro de que deseas eliminar este registro? También se eliminará el usuario relacionado a este miembro (en caso de que exista)",
+    );
     initRestoreAction(() => fillData(dataTable));
 });
-
-
-
