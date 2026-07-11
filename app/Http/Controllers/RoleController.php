@@ -3,23 +3,17 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Services\MemberService;
-use App\Services\CycleService;
-use App\DTOs\Member\CreateMemberDTO;
-use App\DTOs\Member\UpdateMemberDTO;
-use App\Http\Requests\member\StoreMemberRequest;
-use App\Http\Requests\member\UpdateMemberRequest;
+use App\Services\RoleService;
+use App\DTOs\Role\CreateRoleDTO;
+use App\DTOs\Role\UpdateRoleDTO;
 
-class MemberController extends Controller
+class RoleController extends Controller
 {
-    public function __construct(
-        protected MemberService $service,
-        protected CycleService $cycleService
-    ) {}
+    public function __construct(protected RoleService $service) {}
 
     public function index()
     {
-        return view('admin.members.index');
+        // Implement index method if needed
     }
 
     public function getAll()
@@ -42,30 +36,30 @@ class MemberController extends Controller
         return response()->json($this->service->findById($id));
     }
 
-    public function store(StoreMemberRequest $request)
+    public function store(Request $request)
     {
-        $data = $request->validated();
-        $dto = new CreateMemberDTO($data);
+        $data = $request->all();
+        $dto = new CreateRoleDTO($data);
         return response()->json($this->service->create($dto));
     }
 
-    public function update(UpdateMemberRequest $request, int $id)
+    public function update(Request $request, int $id)
     {
-        $data = $request->validated();
+        $data = $request->all();
         $data['id'] = $id;
-        $dto = new UpdateMemberDTO($data);
+        $dto = new UpdateRoleDTO($data);
         return response()->json($this->service->update($dto));
     }
 
     public function delete(int $id)
     {
         $this->service->delete($id);
-        return response()->json(['message' => 'Miembro eliminado correctamente.']);
+        return response()->json(['message' => 'Role deleted successfully.']);
     }
 
     public function restore(int $id)
     {
         $this->service->restore($id);
-        return response()->json(['message' => 'Miembro restaurado correctamente.']);
+        return response()->json(['message' => 'Role restored successfully.']);
     }
 }

@@ -3,11 +3,13 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class User extends Authenticatable
 {
+    use HasFactory;
     use SoftDeletes;
 
     protected $table = 'users';
@@ -45,5 +47,15 @@ class User extends Authenticatable
     public function member()
     {
         return $this->belongsTo(Member::class, 'member_id');
+    }
+
+    public function getNameAttribute(): string
+    {
+        return "{$this->member->first_name} {$this->member->last_name}";
+    }
+
+    public function adminlte_desc(): string
+    {
+        return $this->username;
     }
 }

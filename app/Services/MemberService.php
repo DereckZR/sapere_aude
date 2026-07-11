@@ -5,17 +5,23 @@ namespace App\Services;
 use App\DTOs\Member\CreateMemberDTO;
 use App\DTOs\Member\UpdateMemberDTO;
 use App\Repositories\Interfaces\MemberRepositoryInterface;
+use App\Repositories\Interfaces\UserRepositoryInterface;
+use Illuminate\Validation\ValidationException;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use RuntimeException;
 
 class MemberService
 {
     public function __construct(
-        protected MemberRepositoryInterface $repository,
+        protected MemberRepositoryInterface $memberRepository,
+        protected UserRepositoryInterface $userRepository,
         protected TableActionService $tableActionService
     ) {}
 
     public function getAll()
     {
-        $members = $this->repository->getAll();
+        $members = $this->memberRepository->getAll();
         $members->each(function ($member) {
             $member->actions = $this->tableActionService->renderActions(
                 $member->id,
@@ -29,7 +35,7 @@ class MemberService
 
     public function getAllTrashed()
     {
-        $members = $this->repository->getAllTrashed();
+        $members = $this->memberRepository->getAllTrashed();
         $members->each(function ($member) {
             $member->actions = $this->tableActionService->renderActions(
                 $member->id,
@@ -41,28 +47,59 @@ class MemberService
         return $members;
     }
 
+    public function getAllForSelect()
+    {
+        $members = $this->memberRepository->getAll();
+
+        if ($members->isEmpty()) {
+            throw ValidationException::withMessages(['members' => 'No hay miembros disponibles. Por favor, agregué un miembro antes de registrar un usuario.']);
+        }
+
+        return $members->map(function ($member, $_) {
+            $text = "$member->first_name $member->last_name - $member->document_number";
+
+            return [
+                'id' => $member->id,
+                'text' => $text
+            ];
+        });
+    }
+
     public function findById(int $id)
     {
-        return $this->repository->findById($id);
+        return $this->memberRepository->findById($id);
     }
 
     public function create(CreateMemberDTO $dto)
     {
-        return $this->repository->create($dto);
+        return $this->memberRepository->create($dto);
     }
 
     public function update(UpdateMemberDTO $dto)
     {
-        return $this->repository->update($dto);
+        return $this->memberRepository->update($dto);
     }
 
     public function delete(int $id)
     {
-        return $this->repository->delete($id);
+        $authUserId = Auth::id();
+        $member = $this->memberRepository->findById($id);
+
+        if ($member->user && $member->user->id === $authUserId) {
+            throw new RuntimeException('No es posible eliminar al registro de miembro relacionado con TU usuario.');
+        }
+
+        return DB::transaction(function () use ($member) {
+            if ($member->user) {
+                $this->userRepository->delete($member->user->id);
+            }
+
+            $this->memberRepository->delete($member->id);
+        });
     }
 
     public function restore(int $id)
     {
-        return $this->repository->restore($id);
+        return $this->memberRepository->restore($id);
     }
 }
