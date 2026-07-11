@@ -29,3 +29,7 @@ Route::middleware('auth')->group(function () {
 Route::get('/ping', function () {
     return 'OK';
 });
+
+Route::get('/test', function () {
+    return view('welcome');
+})->name('test');
