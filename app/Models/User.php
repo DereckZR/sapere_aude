@@ -46,4 +46,14 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Member::class, 'member_id');
     }
+
+    public function getNameAttribute(): string
+    {
+        return "{$this->member->first_name} {$this->member->last_name}";
+    }
+
+    public function adminlte_desc(): string
+    {
+        return $this->username;
+    }
 }

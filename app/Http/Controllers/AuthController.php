@@ -22,23 +22,17 @@ class AuthController extends Controller
         $data = $request->validated();
         $dto = new LoginDTO($data);
 
-        try {
-            $this->authService->login($dto);
+        $this->authService->login($dto);
 
-            $request->session()->regenerate();
+        $request->session()->regenerate();
 
-            return redirect()->route('home');
-        } catch (ValidationException $ex) {
-            return back()->withErrors(
-                ['username' => $ex->getMessage()]
-            );
-        }
+        return redirect()->route('home');
     }
 
     public function logout(Request $request)
     {
         $this->authService->logout();
-        
+
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 

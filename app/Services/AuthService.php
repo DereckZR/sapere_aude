@@ -17,12 +17,13 @@ class AuthService
             'password' => $dto->password
         ])) {
             throw ValidationException::withMessages(
-                ['Las credenciales introducidas son incorrectas.']
+                ['login' => 'Las credenciales introducidas son incorrectas.']
             );
         }
     }
 
-    public function logout() {
+    public function logout()
+    {
         Auth::logout();
     }
 }
