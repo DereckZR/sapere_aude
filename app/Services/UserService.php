@@ -17,7 +17,6 @@ class UserService
     public function __construct(
         protected UserRepositoryInterface $userRepository,
         protected MemberRepositoryInterface $memberRepository,
-        protected TableActionService $tableActionService
     ) {}
 
     public function getAll()
@@ -28,12 +27,6 @@ class UserService
             $user->full_name =
                 $user->member->getFullNameAttribute();
             $user->role_name = $user->role->name;
-            $user->actions = $this->tableActionService->renderActions(
-                $user->id,
-                'users',
-                false,
-                true
-            );
         });
 
         return $users;
@@ -47,12 +40,6 @@ class UserService
             $user->full_name =
                 $user->member->getFullNameAttribute();
             $user->role_name = $user->role->name;
-            $user->actions = $this->tableActionService->renderActions(
-                $user->id,
-                'users',
-                $user->trashed(),
-                true
-            );
         });
 
         return $users;

@@ -1,16 +1,45 @@
 // utils/renderTableActions.js
 
-export function renderTableActions(routes, id, rules = {}) {
+export function renderTableActions(routes, id, rules = {}, labels = {}) {
+    rules = {
+        canEdit: true,
+        canDelete: true,
+        canRestore: false,
+        canShow: false,
+        ...rules
+    }
+
+    labels = {
+        edit: 'Editar',
+        delete: 'Eliminar',
+        restore: 'Restaurar',
+        show: 'Detalles',
+        ...labels
+    }
+
     let actions = [];
 
-    if (routes.updateUrl && rules.canEdit) {
-        const updateUrl = routes.updateUrl.replace(':id', id);
+    if (routes.findByIdUrl && rules.canShow) {
+        const findByIdUrl = routes.findByIdUrl.replace(':id', id);
         const btn = new ActionButton({
-            action: ActionType.UPDATE,
+            action: ActionType.SHOW,
             id: id,
-            url: updateUrl,
+            url: findByIdUrl,
+            type: 'secondary',
+            label: labels.show
+        });
+
+        actions.push(btn.render());
+    }
+
+    if (routes.findByIdUrl && rules.canEdit) {
+        const findByIdUrl = routes.findByIdUrl.replace(':id', id);
+        const btn = new ActionButton({
+            action: ActionType.EDIT,
+            id: id,
+            url: findByIdUrl,
             type: 'primary',
-            label: 'Editar'
+            label: labels.edit
         });
 
         actions.push(btn.render());
@@ -23,7 +52,7 @@ export function renderTableActions(routes, id, rules = {}) {
             id: id,
             url: deleteUrl,
             type: 'danger',
-            label: 'Eliminar'
+            label: labels.delete
         });
 
         actions.push(btn.render());
@@ -36,7 +65,7 @@ export function renderTableActions(routes, id, rules = {}) {
             id: id,
             url: restoreUrl,
             type: 'info',
-            label: 'Restaurar'
+            label: labels.restore
         });
 
         actions.push(btn.render());

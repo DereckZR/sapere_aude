@@ -16,34 +16,17 @@ class MemberService
     public function __construct(
         protected MemberRepositoryInterface $memberRepository,
         protected UserRepositoryInterface $userRepository,
-        protected TableActionService $tableActionService
     ) {}
 
     public function getAll()
     {
         $members = $this->memberRepository->getAll();
-        $members->each(function ($member) {
-            $member->actions = $this->tableActionService->renderActions(
-                $member->id,
-                'members',
-                false,
-                true
-            );
-        });
         return $members;
     }
 
     public function getAllTrashed()
     {
         $members = $this->memberRepository->getAllTrashed();
-        $members->each(function ($member) {
-            $member->actions = $this->tableActionService->renderActions(
-                $member->id,
-                'members',
-                $member->trashed(),
-                true
-            );
-        });
         return $members;
     }
 
