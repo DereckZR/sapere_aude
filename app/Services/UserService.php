@@ -6,7 +6,7 @@ use App\DTOs\User\CreateUserDTO;
 use App\DTOs\User\UpdateUserDTO;
 use App\Repositories\Interfaces\MemberRepositoryInterface;
 use App\Repositories\Interfaces\UserRepositoryInterface;
-use DateTimeInterface;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use RuntimeException;
 use App\Helpers\NameHelper;
@@ -39,6 +39,7 @@ class UserService
         return $users;
     }
 
+    // TODO: preguntar si se puede mostrar los usuarios cuyo miembro también fue eliminado y restaurar este por ende
     public function getAllTrashed()
     {
         $users = $this->userRepository->getAllTrashed();
@@ -100,6 +101,12 @@ class UserService
 
     public function delete(int $id)
     {
+        $authUserId = Auth::id();
+
+        if ($id === $authUserId) {
+            throw new RuntimeException('No es posible eliminar a su propio usuario.');
+        }
+
         return $this->userRepository->delete($id);
     }
 
