@@ -19,6 +19,13 @@ export function initCreateUser() {
             const members = await apiFetch(urlMembers);
             const roles = await apiFetch(urlRoles);
 
+            $('#password__container').removeClass('d-none');
+            $('#password_confirmation__container').removeClass('d-none');
+
+            $('#password').prop('required', true);
+            $('#password_confirmation').prop('required', true);
+            $('#member_id').prop('required', true);
+
             loadTomSelectOptions({
                 selector: "#role_id",
                 options: roles,
