@@ -22,7 +22,7 @@ $(async function () {
 
     initDeleteAction(
         () => fillData(dataTable),
-        "¿Estás seguro de que deseas eliminar este registro? También se eliminará el usuario relacionado a este miembro",
+        "¿Estás seguro de que deseas eliminar este registro? También se eliminará el usuario relacionado a este miembro (en caso de que exista)",
     );
     initRestoreAction(() => fillData(dataTable));
 });
