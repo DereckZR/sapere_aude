@@ -55,5 +55,5 @@
 @stop
 
 @push('js')
-    @vite('resources/js/modules/auth/index.js')
+    {{-- @vite('resources/js/modules/auth/index.js') --}}
 @endpush
