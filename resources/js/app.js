@@ -53,6 +53,10 @@ import { initRemoveInvalidFeedback } from './utils/removeInvalidFeedback.js';
 
 const module = document.body.dataset.module;
 
+if (module === 'auth') {
+    import('./modules/auth');
+}
+
 if (module === 'cycles') {
     import('./modules/cycles');
 }
