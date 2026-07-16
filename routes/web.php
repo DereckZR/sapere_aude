@@ -25,3 +25,7 @@ Route::middleware('auth')->group(function () {
 
     Route::crud('members', MemberController::class);
 });
+
+Route::get('/ping', function () {
+    return 'OK';
+});
