@@ -1,5 +1,6 @@
 import { fillData } from '../../services/tableService.js';
 import { initProductsTable } from './table.js';
+import { initCreateProduct } from './create.js';
 import { initEditProduct } from './edit.js';
 import { initToggleDeleted } from '../../utils/toggleDeleted.js';
 import { initForm } from '../../services/formService.js';
@@ -16,6 +17,7 @@ $(async function () {
 
     initForm({ reloadTable: () => fillData(dataTable) });
 
+    initCreateProduct();
     initEditProduct();
 
     initDeleteAction(() => fillData(dataTable));
