@@ -18,6 +18,7 @@ class Transaction extends Model
         'is_cash',
         'transaction_category_id',
         'responsible_member_id',
+        'cycle_id',
     ];
 
     protected $casts = [
@@ -40,5 +41,10 @@ class Transaction extends Model
     public function responsibleMember()
     {
         return $this->belongsTo(Member::class, 'responsible_member_id');
+    }
+
+    public function cycle()
+    {
+        return $this->belongsTo(Cycle::class);
     }
 }
