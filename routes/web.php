@@ -9,6 +9,7 @@ require __DIR__ . '/admin/users.php';
 require __DIR__ . '/admin/members.php';
 require __DIR__ . '/admin/roles.php';
 require __DIR__ . '/admin/products.php';
+require __DIR__ . '/admin/inventoryMovements.php';
 
 Route::middleware('auth')->group(function () {
     Route::get('/home', function () {
