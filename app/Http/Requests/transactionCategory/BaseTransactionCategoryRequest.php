@@ -18,6 +18,7 @@ class BaseTransactionCategoryRequest extends FormRequest
                 'required',
                 'string',
                 'max:255',
+                'unique:transaction_categories,name',
             ],
             'description' => [
                 'nullable',
@@ -38,7 +39,11 @@ class BaseTransactionCategoryRequest extends FormRequest
             '*.string' => 'Este campo debe ser una cadena de texto.',
             '*.max' => 'El valor ingresado debe ser máximo :max.',
 
-            'type.in' => 'El tipo de movimiento debe ser "ingreso" o "egreso".',
+            'type.in' =>
+            'El tipo de movimiento debe ser "ingreso" o "egreso".',
+
+            'name.unique' =>
+            'El nombre de la categoría ya está en uso.',
         ];
     }
 }
