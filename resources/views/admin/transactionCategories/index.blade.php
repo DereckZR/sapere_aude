@@ -11,7 +11,7 @@
 @endsection
 
 @section('content')
-    <button type="button" class="btn btn-primary mb-3" id="btnCreate" data-cycles-url="{{ route('members.getAllForSelect') }}">
+    <button type="button" class="btn btn-primary mb-3" id="btnCreate">
         <i class="fas fa-plus"></i> Registrar categoría de transacción
     </button>
 
