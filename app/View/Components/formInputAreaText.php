@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\View\Component;
 use Illuminate\Contracts\View\View;
 
-class formInputAreaText extends Component
+class FormInputAreaText extends Component
 {
     public string $name;
     public string $label;
