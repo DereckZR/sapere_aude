@@ -24,6 +24,11 @@ class UpdateProductRequest extends BaseProductRequest
             $uniqueProductName,
         ];
 
+        $rules['stock_quantity'] = [
+            'nullable',
+            'integer',
+        ];
+
         return $rules;
     }
 }
