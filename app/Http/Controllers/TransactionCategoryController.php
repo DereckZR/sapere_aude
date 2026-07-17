@@ -23,6 +23,11 @@ class TransactionCategoryController extends Controller
         return response()->json($this->service->getAll());
     }
 
+    public function getAllForSelect()
+    {
+        return response()->json($this->service->getAllForSelect());
+    }
+
     public function getAllTrashed()
     {
         return response()->json($this->service->getAllTrashed());
