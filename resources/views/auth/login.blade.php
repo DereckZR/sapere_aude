@@ -2,6 +2,10 @@
 
 @section('title', 'Inicio de sesión')
 
+@section('body_data')
+    data-module="auth"
+@endsection
+
 @section('auth_body')
     <div id="form" class="container mx-auto">
         <div id="loader" class="d-none overlay loader">
@@ -53,7 +57,3 @@
         </form>
     </div>
 @stop
-
-@push('js')
-    @vite('resources/js/modules/auth/index.js')
-@endpush

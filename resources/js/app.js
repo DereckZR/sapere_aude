@@ -40,18 +40,15 @@ window.TomSelect = TomSelect;
 
 /*
 |--------------------------------------------------------------------------
-| Utils
-|--------------------------------------------------------------------------
-*/
-import { initRemoveInvalidFeedback } from './utils/removeInvalidFeedback.js';
-
-/*
-|--------------------------------------------------------------------------
 | Modulos
 |--------------------------------------------------------------------------
 */
 
 const module = document.body.dataset.module;
+
+if (module === 'auth') {
+    import('./modules/auth');
+}
 
 if (module === 'cycles') {
     import('./modules/cycles');
@@ -65,39 +62,19 @@ if (module === 'users') {
     import('./modules/users');
 }
 
+if (module === 'products') {
+    import('./modules/products');
+}
+
 /*
 |--------------------------------------------------------------------------
-| FormModal
+| Inicializar App
 |--------------------------------------------------------------------------
 */
 
-const modal = $('#formModal');
-const form = $('#formModal form');
+import { initApp } from './services/appService.js';
 
-// CREAR
-$('#btnCreate').on('click', function () {
-    form.attr('action', form.data('createurl'));
-    $('#formMethod').val('POST');
-    $('#modalTitle').text('Registrar');
-
-    form.trigger('reset');
-    form.find('.is-invalid').removeClass('is-invalid');
-    form.find('.invalid-feedback').text('');
-    modal.modal('show');
+$(function () {
+    initApp();
 });
-
-// EDITAR
-$(document).on('click', '.btn-edit', function () {
-    const id = $(this).data('id');
-    form.attr('action', form.data('updateurl').replace(':id', id));
-    $('#formMethod').val('PUT');
-    $('#modalTitle').text('Editar');
-    form.trigger('reset');
-    form.find('.is-invalid').removeClass('is-invalid');
-    form.find('.invalid-feedback').text('');
-    modal.modal('show');
-});
-
-initRemoveInvalidFeedback();
-
 
