@@ -22,6 +22,7 @@ return [
     'members' => 'Miembros',
     'users' => 'Usuarios',
     'transactions' => 'Transacciones',
+    'categories' => 'Categorías',
     'contributions' => 'Aportes',
     'directives' => 'Directivas',
     'branches' => 'Ramas',

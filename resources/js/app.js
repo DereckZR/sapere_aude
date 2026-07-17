@@ -66,6 +66,14 @@ if (module === 'products') {
     import('./modules/products');
 }
 
+if (module === 'transaction-categories') {
+    import('./modules/transactionCategories');
+}
+
+if (module === 'transactions') {
+    import('./modules/transactions');
+}
+
 /*
 |--------------------------------------------------------------------------
 | Inicializar App
