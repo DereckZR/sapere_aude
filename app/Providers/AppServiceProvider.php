@@ -11,6 +11,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
+        $this->app->scoped(\App\Repositories\Interfaces\TransactionRepositoryInterface::class, \App\Repositories\TransactionRepository::class);
         $this->app->scoped(\App\Repositories\Interfaces\TransactionCategoryRepositoryInterface::class, \App\Repositories\TransactionCategoryRepository::class);
         $this->app->scoped(\App\Repositories\Interfaces\InventoryMovementRepositoryInterface::class, \App\Repositories\InventoryMovementRepository::class);
         $this->app->scoped(\App\Repositories\Interfaces\ProductRepositoryInterface::class, \App\Repositories\ProductRepository::class);
