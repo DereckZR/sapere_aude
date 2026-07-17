@@ -337,7 +337,7 @@ return [
                 ],
                 [
                     'text' => 'sells',
-                    'url' => 'sells',
+                    'url' => 'transactions',
                     'icon' => 'fas fa-fw fa-receipt',
                 ],
             ],
