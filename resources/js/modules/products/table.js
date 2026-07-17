@@ -7,6 +7,7 @@ export function initProductsTable() {
         processing: true,
         data: [],
         order: [],
+        autoWidth: false,
         columns: [
             {
                 data: 'name',
