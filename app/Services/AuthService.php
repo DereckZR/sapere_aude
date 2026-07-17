@@ -13,7 +13,7 @@ class AuthService
     public function login(LoginDTO $dto)
     {
         if (!Auth::attempt([
-            'username' => $dto->username,
+            'username' => strtoupper($dto->username),
             'password' => $dto->password
         ])) {
             throw ValidationException::withMessages(
