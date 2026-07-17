@@ -62,6 +62,10 @@ if (module === 'users') {
     import('./modules/users');
 }
 
+if (module === 'products') {
+    import('./modules/products');
+}
+
 /*
 |--------------------------------------------------------------------------
 | Inicializar App
