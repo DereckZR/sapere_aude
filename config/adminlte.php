@@ -326,6 +326,11 @@ return [
             'icon' => 'fas fa-fw fa-exchange-alt',
             'submenu' => [
                 [
+                    'text' => 'categories',
+                    'url' => 'transaction-categories',
+                    'icon' => 'fas fa-fw fa-list',
+                ],
+                [
                     'text' => 'contributions',
                     'url' => 'contributions',
                     'icon' => 'fas fa-fw fa-donate',
