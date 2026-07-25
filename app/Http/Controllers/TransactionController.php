@@ -32,6 +32,11 @@ class TransactionController extends Controller
         return response()->json($this->service->getAllTrashed());
     }
 
+    public function getLatest()
+    {
+        return response()->json($this->service->getLatest());
+    }
+
     public function findById(int $id)
     {
         return response()->json($this->service->findById($id));
