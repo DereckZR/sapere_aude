@@ -11,15 +11,11 @@
 @endsection
 
 @section('content')
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-3">
-                <a href="{{ route('transactions.index') }}" class="btn btn-primary mb-3">
-                    <i class="fas fa-plus"></i> Añadir Transacción
-                </a>
-            </div>
-        </div>
-    </div>
+    <button type="button" class="btn btn-primary mb-3" id="btnCreate" data-members-url="{{ route('members.getAllForSelect') }}"
+        data-transaction-categories-url="{{ route('transaction-categories.getAllForSelect') }}"
+        data-cycles-url="{{ route('cycles.getAllForSelect') }}">
+        <i class="fas fa-plus"></i> Registrar transacción
+    </button>
 
     <div class="container">
         <div class="row">
@@ -37,4 +33,6 @@
             </div>
         </div>
     </div>
+
+    @include('admin.transactions.partials.transactionModal')
 @stop

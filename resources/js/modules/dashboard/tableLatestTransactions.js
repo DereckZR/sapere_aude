@@ -1,4 +1,4 @@
-import { formatDatetime } from "../../utils/formatDate.js";
+import { formatDatetime, formatDate } from "../../utils/formatDate.js";
 import { DATATABLE_ES } from "../../utils/DATATABLE_ES.js";
 import { renderTableActions } from "../../utils/renderTableActions.js";
 import { MovementType } from "../../enums/movementType.js";
@@ -43,8 +43,15 @@ export function initLatestTransactionsTable() {
                 title: "Monto (Bs)",
             },
             {
+                data: "transaction_date",
+                title: "Fecha de la transacción",
+                render: function (data) {
+                    return formatDate(data);
+                },
+            },
+            {
                 data: "created_at",
-                title: "Fecha y hora",
+                title: "Fecha y hora de registro",
                 render: function (data) {
                     return formatDatetime(data);
                 },
