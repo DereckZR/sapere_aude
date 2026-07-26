@@ -23,11 +23,15 @@
 
     <div class="container">
         <div class="row">
-            <div class="col-md-6">
+            <div class="col">
                 <h2 style="font-size: 24px;">Últimas transacciones</h2>
 
                 <table id="tableTransactions" class="table table-bordered table-striped table-hover"
                 data-url="{{ route('transactions.getLatest') }}"></table>
+
+                <a href="{{ route('transactions.index') }}" class="btn btn-primary mb-3 mx-auto">
+                    <i class="fas fa-eye"></i> Ver más transacciones
+                </a>
             </div>
         </div>
     </div>
