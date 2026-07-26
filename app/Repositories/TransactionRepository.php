@@ -31,7 +31,7 @@ class TransactionRepository implements TransactionRepositoryInterface
             'responsibleMember',
             'cycle'
         ])
-            ->orderBy('updated_at', 'desc')
+            ->orderBy('created_at', 'desc')
             ->take($size)
             ->get();
     }

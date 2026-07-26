@@ -27,11 +27,13 @@
                 <h2 style="font-size: 24px;">Últimas transacciones</h2>
 
                 <table id="tableTransactions" class="table table-bordered table-striped table-hover"
-                data-url="{{ route('transactions.getLatest') }}"></table>
+                    data-url="{{ route('transactions.getLatest') }}"></table>
 
-                <a href="{{ route('transactions.index') }}" class="btn btn-primary mb-3 mx-auto">
-                    <i class="fas fa-eye"></i> Ver más transacciones
-                </a>
+                <div class="w-100 mt-2 d-flex justify-content-center">
+                    <a href="{{ route('transactions.index') }}" class="btn btn-primary">
+                        <i class="fas fa-eye"></i> Ver más transacciones
+                    </a>
+                </div>
             </div>
         </div>
     </div>

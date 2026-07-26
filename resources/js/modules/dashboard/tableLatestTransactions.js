@@ -32,11 +32,18 @@ export function initLatestTransactionsTable() {
                 },
             },
             {
+                data: "responsible_member",
+                title: "Responsable",
+                render: function (data) {
+                    return `${data.first_name} ${data.last_name}`;
+                },
+            },
+            {
                 data: "amount",
                 title: "Monto (Bs)",
             },
             {
-                data: "updated_at",
+                data: "created_at",
                 title: "Fecha y hora",
                 render: function (data) {
                     return formatDatetime(data);
