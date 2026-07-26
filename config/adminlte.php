@@ -316,6 +316,11 @@ return [
         ],
         ['header' => 'Administración'],
         [
+            'text' => 'dashboard',
+            'url' => 'home',
+            'icon' => 'fas fa-fw fa-chart-line',
+        ],
+        [
             'text' => 'members',
             'url' => 'members',
             'icon' => 'fas fa-fw fa-graduation-cap',
