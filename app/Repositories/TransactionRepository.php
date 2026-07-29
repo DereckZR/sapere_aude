@@ -24,6 +24,18 @@ class TransactionRepository implements TransactionRepositoryInterface
         return Transaction::withTrashed()->get();
     }
 
+    public function getLatest(int $size)
+    {
+        return Transaction::with([
+            'transactionCategory',
+            'responsibleMember',
+            'cycle'
+        ])
+            ->orderBy('created_at', 'desc')
+            ->take($size)
+            ->get();
+    }
+
     public function findById(int $id)
     {
         return Transaction::findOrFail($id);
