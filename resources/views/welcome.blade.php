@@ -6,9 +6,9 @@
     <h1>Dashboard</h1>
 @stop
 
-{{-- @section('body_data')
+@section('body_data')
     data-module="dashboard"
-@endsection --}}
+@endsection
 
 @section('content')
     <button type="button" class="btn btn-primary mb-3" id="btnCreate" data-members-url="{{ route('members.getAllForSelect') }}"
