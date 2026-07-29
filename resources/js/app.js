@@ -50,6 +50,10 @@ if (module === 'auth') {
     import('./modules/auth');
 }
 
+if (module === 'dashboard') {
+    import('./modules/dashboard');
+}
+
 if (module === 'cycles') {
     import('./modules/cycles');
 }

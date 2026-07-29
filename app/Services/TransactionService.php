@@ -20,6 +20,10 @@ class TransactionService
         return  $this->repository->getAllTrashed();
     }
 
+    public function getLatest(){
+        return $this->repository->getLatest(10);
+    }
+
     public function findById(int $id)
     {
         return $this->repository->findById($id);

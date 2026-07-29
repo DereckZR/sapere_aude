@@ -18,6 +18,7 @@ return [
     'information' => 'Información',
 
     // Custom menu items
+    'dashboard' => 'Dashboard',
     'cycles' => 'Ciclos',
     'members' => 'Miembros',
     'users' => 'Usuarios',

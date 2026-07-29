@@ -10,6 +10,7 @@ interface TransactionRepositoryInterface
     public function getAll();
     public function getAllTrashed();
     public function findById(int $id);
+    public function getLatest(int $size);
     public function create(CreateTransactionDTO $dto);
     public function update(UpdateTransactionDTO $dto);
     public function delete(int $id);
