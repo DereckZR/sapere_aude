@@ -34,5 +34,5 @@
         </div>
     </div>
 
-    {{-- @include('admin.transactions.partials.transactionModal') --}}
+    @include('admin.transactions.partials.transactionModal')
 @stop
